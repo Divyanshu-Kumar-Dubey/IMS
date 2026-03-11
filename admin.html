@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -716,6 +716,19 @@
     }
     .btn-apply-theme:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,25,44,0.5); }
 
+    /* Reset to Default btn */
+    .btn-reset-theme {
+      width: 100%; padding: .8rem;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.55); font-size: .8rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      margin-top: .6rem;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+    .btn-reset-theme:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3); }
+
     .ts-success {
       display: none;
       margin-top: 1rem;
@@ -1007,6 +1020,10 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
                 Apply Theme to Website
               </button>
+              <button class="btn-reset-theme" onclick="resetTheme()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                Reset to Default
+              </button>
               <div class="ts-success" id="ts-success">
                 ✅ Theme applied! Refresh your website to see the changes.
               </div>
@@ -1172,7 +1189,6 @@
       const themeConfig = { primary, secondary, btnText, mode: currentMode, preset, ts: Date.now() };
       localStorage.setItem('ims-admin-theme', JSON.stringify(themeConfig));
 
-      // Build and inject a <style> override into a shared BroadcastChannel if supported
       if (window.BroadcastChannel) {
         const bc = new BroadcastChannel('ims-theme');
         bc.postMessage(themeConfig);
@@ -1180,6 +1196,36 @@
       }
 
       const suc = document.getElementById('ts-success');
+      suc.textContent = '✅ Theme applied! Refresh your website to see the changes.';
+      suc.style.background = 'rgba(76,175,80,0.15)';
+      suc.style.borderColor = 'rgba(76,175,80,0.3)';
+      suc.style.color = '#81c784';
+      suc.style.display = 'block';
+      setTimeout(() => { suc.style.display = 'none'; }, 5000);
+    };
+
+    window.resetTheme = function() {
+      // Clear saved admin theme
+      localStorage.removeItem('ims-admin-theme');
+
+      // Restore IMS Classic defaults
+      document.getElementById('color-primary').value   = '#e8192c';
+      document.getElementById('color-secondary').value = '#f0c040';
+      document.getElementById('color-btntext').value   = '#ffffff';
+      selectMode('light');
+
+      // Select IMS Classic swatch
+      document.querySelectorAll('.preset-swatch').forEach(s => s.classList.remove('selected'));
+      document.querySelector('[data-preset="ims-classic"]')?.classList.add('selected');
+
+      updatePreview();
+
+      // Notify user
+      const suc = document.getElementById('ts-success');
+      suc.textContent = '↩ Default theme restored! Refresh your website to apply it.';
+      suc.style.background = 'rgba(240,192,64,0.12)';
+      suc.style.borderColor = 'rgba(240,192,64,0.35)';
+      suc.style.color = '#f0c040';
       suc.style.display = 'block';
       setTimeout(() => { suc.style.display = 'none'; }, 5000);
     };
