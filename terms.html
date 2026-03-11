@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | IMS Security Services</title>
+  <meta name="description" content="Terms of Service for IMS Security Services – the rules and guidelines governing use of our website and services." />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #e8192c; --red-dark: #b5111f; --gold: #f0c040;
+      --dark: #12131f; --dark2: #1a1b2e; --text-muted: #6b7280;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: #fff; }
+    header {
+      background: rgba(13,14,31,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(232,25,44,0.2);
+      padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo-link {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+      color: #fff; text-decoration: none; letter-spacing: .02em;
+    }
+    .logo-link span { color: var(--gold); }
+    .back-link {
+      font-size: .8rem; font-weight: 600; color: rgba(255,255,255,0.65);
+      text-decoration: none; letter-spacing: .08em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .4rem; transition: color .2s;
+    }
+    .back-link:hover { color: var(--gold); }
+    .page-hero {
+      background: linear-gradient(135deg, #0d0e1f 0%, #1a0a1c 50%, #3a0010 100%);
+      padding: 4rem 2rem 3rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(232,25,44,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem); color: #fff; position: relative; z-index: 1;
+    }
+    .page-hero h1 span { color: var(--gold); }
+    .page-hero p { color: rgba(255,255,255,0.55); font-size: .9rem; margin-top: .8rem; position: relative; z-index: 1; }
+    .hero-div { width:60px;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));margin:1.2rem auto 0;border-radius:3px;position:relative;z-index:1; }
+    .content { max-width: 820px; margin: 0 auto; padding: 3.5rem 2rem 5rem; }
+    .last-updated {
+      display: inline-block; background: #fff0f0; color: var(--red);
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem .9rem; border-radius: 50px; margin-bottom: 2.5rem;
+      border: 1px solid rgba(232,25,44,0.2);
+    }
+    section { margin-bottom: 2.8rem; }
+    h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--dark);
+      margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 2px solid #ffe0e0;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    h2 .num {
+      width:30px;height:30px;border-radius:50%;
+      background:linear-gradient(135deg,var(--red),var(--red-dark));
+      color:#fff;font-size:.75rem;font-weight:800;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;font-family:'Inter',sans-serif;
+    }
+    p { color: #555; line-height: 1.85; font-size: .93rem; margin-bottom: .9rem; }
+    ul { padding-left: 1.4rem; margin-bottom: .9rem; }
+    li { color: #555; line-height: 1.85; font-size: .93rem; margin-bottom: .4rem; }
+    a { color: var(--red); font-weight: 600; }
+    footer { background:var(--dark2);padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,255,0.07); }
+    .footer-logo { font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff; }
+    .footer-div { width:50px;height:2px;background:linear-gradient(90deg,var(--red),var(--gold));margin:.8rem auto;border-radius:2px; }
+    .footer-meta { font-size:.75rem;color:rgba(255,255,255,0.4);line-height:1.8; }
+    .footer-meta a { color:var(--gold);text-decoration:none; }
+    .footer-links { margin-top:.8rem; }
+    .footer-links a { color:rgba(255,255,255,0.4);text-decoration:none;font-size:.75rem;margin:0 .6rem;transition:color .2s; }
+    .footer-links a:hover { color:var(--gold); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://imsjsr.com" class="logo-link"><span>IMS</span> Security Services</a>
+    <a href="https://imsjsr.com" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Back to Home
+    </a>
+  </header>
+
+  <div class="page-hero">
+    <h1>Terms of <span>Service</span></h1>
+    <p>The rules and guidelines governing your use of the IMS Security Services website.</p>
+    <div class="hero-div"></div>
+  </div>
+
+  <div class="content">
+    <div class="last-updated">Last Updated: March 2026</div>
+
+    <section>
+      <h2><span class="num">1</span> Acceptance of Terms</h2>
+      <p>By accessing and using the website <a href="https://imsjsr.com">imsjsr.com</a>, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website. These terms apply to all visitors, users, and clients of IMS Security Services.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span> Services Description</h2>
+      <p>IMS Security Services ("IMS", "we", "us") provides professional security guard services, facility management, and related services in India. Our website serves as an informational platform and point of contact for prospective and existing clients.</p>
+      <p>IMS is an ISO 9001:2015 certified company, operating in 30+ cities across India, headquartered in Jamshedpur, Jharkhand.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span> Use of Website</h2>
+      <p>You agree to use our website only for lawful purposes. You must not:</p>
+      <ul>
+        <li>Use the website in any way that violates applicable local, national, or international laws or regulations.</li>
+        <li>Attempt to gain unauthorized access to any part of the website or its related systems.</li>
+        <li>Transmit any unsolicited or unauthorized advertising or promotional material.</li>
+        <li>Reproduce, duplicate, copy, or re-sell any content from this website without prior written consent.</li>
+        <li>Submit false or misleading information through our contact forms.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">4</span> Intellectual Property</h2>
+      <p>All content on this website — including text, graphics, logos, images, and the IMS name and brand — is the property of IMS Security Services and is protected by applicable intellectual property laws.</p>
+      <p>You may not reproduce, distribute, or create derivative works from any of our content without prior written permission from IMS.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">5</span> Disclaimer of Warranties</h2>
+      <p>This website is provided "as is" without any representations or warranties, express or implied. IMS makes no warranties regarding the accuracy, completeness, or reliability of information on the website.</p>
+      <p>IMS does not warrant that the website will be available uninterrupted or error-free.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">6</span> Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, IMS Security Services shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of, or inability to use, this website or its content.</p>
+      <p>This limitation applies regardless of whether the damages are based on contract, tort, negligence, or any other legal theory.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">7</span> Third-Party Links</h2>
+      <p>Our website may contain links to third-party websites (such as WhatsApp or Google Maps). These links are provided for your convenience. IMS has no control over the content of those sites and accepts no responsibility for them or for any loss or damage arising from your use of them.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">8</span> Changes to Terms</h2>
+      <p>IMS reserves the right to modify these Terms of Service at any time. Updated terms will be posted on this page with a revised "Last Updated" date. Your continued use of the website after any changes constitutes your acceptance of the new terms.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">9</span> Governing Law</h2>
+      <p>These Terms of Service shall be governed by and construed in accordance with the laws of India. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Jharkhand, India.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">10</span> Contact Us</h2>
+      <p>If you have any questions about these Terms of Service, please contact us:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:dineshdubey@imsjsr.com">dineshdubey@imsjsr.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+917479558421">+91 7479558421</a></li>
+        <li><strong>Address:</strong> Zon 1b House No. 15A Road, Saraswati Niwas, Birsanagar, Jamshedpur, JH 831019</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Integrated Multi Purpose Services</div>
+    <div class="footer-div"></div>
+    <div class="footer-meta">
+      ISO 9001:2015 Certified &nbsp;|&nbsp; Jamshedpur, JH 831019<br>
+      <a href="mailto:dineshdubey@imsjsr.com">dineshdubey@imsjsr.com</a> &nbsp;|&nbsp;
+      <a href="tel:+917479558421">+91 7479558421</a><br><br>
+      Copyright &copy; 2015 IMS Security – All Rights Reserved.
+    </div>
+    <div class="footer-links">
+      <a href="https://imsjsr.com">Home</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+  </footer>
+
+</body>
+</html>

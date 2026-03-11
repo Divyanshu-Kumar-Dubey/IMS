@@ -1,0 +1,8 @@
+# robots.txt for https://imsjsr.com/
+# IMS – Integrated Multi Purpose Services
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://imsjsr.com/sitemap.xml
