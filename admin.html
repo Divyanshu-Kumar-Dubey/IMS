@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -550,12 +550,185 @@
     .config-banner-text strong { color: var(--gold); }
     .config-banner-text a { color: var(--gold); }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .dash-main { padding: 1rem; }
-      #search-input { width: 100%; }
-      .toolbar { flex-direction: column; align-items: flex-start; }
+    /* ── NAV TABS ────────────────────────────────── */
+    .dash-tabs {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      padding: 0 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: rgba(13,14,31,0.97);
     }
+    .dash-tab {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 1.2rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .dash-tab:hover { color: rgba(255,255,255,0.75); }
+    .dash-tab.active { color: #fff; border-bottom-color: var(--red); }
+    .dash-tab svg { width: 16px; height: 16px; fill: currentColor; }
+    .dash-panel { display: none; }
+    .dash-panel.active { display: block; }
+
+    /* ── THEME STUDIO ────────────────────────────── */
+    .theme-studio { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+    .ts-heading { margin-bottom: 2rem; }
+    .ts-heading h1 { font-size: 1.5rem; font-weight: 800; color: #fff; }
+    .ts-heading p { font-size: .82rem; color: var(--muted); margin-top: .3rem; }
+
+    .ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 800px) { .ts-grid { grid-template-columns: 1fr; } }
+
+    .ts-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 1.8rem;
+    }
+    .ts-card-title {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    /* Presets */
+    .preset-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+    .preset-swatch {
+      border-radius: 14px;
+      padding: 1rem .8rem;
+      cursor: pointer;
+      text-align: center;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      border: 2px solid transparent;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .preset-swatch:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .preset-swatch.selected { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.25); }
+    .preset-swatch .check {
+      display: none;
+      position: absolute;
+      top: 6px; right: 8px;
+      font-size: 12px;
+    }
+    .preset-swatch.selected .check { display: block; }
+
+    /* Color pickers */
+    .color-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .color-row label { flex: 1; font-size: .82rem; color: rgba(255,255,255,0.75); }
+    input[type="color"] {
+      width: 52px; height: 36px;
+      border: none; border-radius: 8px;
+      cursor: pointer; padding: 2px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Mode toggle */
+    .mode-toggles { display: flex; gap: .8rem; }
+    .mode-btn {
+      flex: 1; padding: .85rem;
+      border-radius: 12px;
+      font-size: .8rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.5);
+      transition: all .2s;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+    }
+    .mode-btn.selected {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+
+    /* Live preview */
+    .ts-preview {
+      margin-top: 1.5rem;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .preview-bar {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 0 1rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+    .preview-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .preview-hero {
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.5rem 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+    .preview-hero h3 { font-size: 1.3rem; font-weight: 800; line-height: 1.1; }
+    .preview-hero p { font-size: .75rem; opacity: .7; }
+    .preview-btn {
+      margin-top: .5rem;
+      padding: .45rem 1.2rem;
+      border-radius: 50px;
+      font-size: .72rem; font-weight: 700;
+      border: none; cursor: default;
+    }
+
+    /* Apply btn */
+    .btn-apply-theme {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: #fff; font-size: .9rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      border: none; border-radius: 14px; cursor: pointer;
+      box-shadow: 0 6px 24px var(--red-glow);
+      transition: transform .2s, box-shadow .2s;
+      margin-top: 1.5rem;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+    }
+    .btn-apply-theme:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,25,44,0.5); }
+
+    .ts-success {
+      display: none;
+      margin-top: 1rem;
+      padding: .8rem 1rem;
+      background: rgba(76,175,80,0.15);
+      border: 1px solid rgba(76,175,80,0.3);
+      border-radius: 10px;
+      color: #81c784;
+      font-size: .82rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -586,7 +759,7 @@
         <img src="ims-logo.png" alt="IMS" onerror="this.style.display='none'" />
         <div class="dash-brand-text">
           <h2>IMS Administration</h2>
-          <span>Contact Dashboard</span>
+          <span>Control Center</span>
         </div>
       </div>
       <div class="dash-header-right">
@@ -598,76 +771,252 @@
       </div>
     </header>
 
-    <!-- Main -->
-    <main class="dash-main">
+    <!-- Tab Navigation -->
+    <div class="dash-tabs">
+      <button class="dash-tab active" id="tab-messages" onclick="switchTab('messages')">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Messages
+      </button>
+      <button class="dash-tab" id="tab-theme" onclick="switchTab('theme')">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        Theme Studio
+      </button>
+    </div>
 
-      <div class="dash-page-title">
-        <h1>Contact Submissions</h1>
-        <p>Real-time view of all messages sent via the website contact form.</p>
+    <!-- ── PANEL: Messages ─────────────────────────────────── -->
+    <div class="dash-panel active" id="panel-messages">
+      <main class="dash-main">
+
+        <div class="dash-page-title">
+          <h1>Contact Submissions</h1>
+          <p>Real-time view of all messages sent via the website contact form.</p>
+        </div>
+
+        <!-- Firebase config warning -->
+        <div class="config-banner" id="config-banner" style="display:none;">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <div class="config-banner-text">
+            <strong>Firebase not configured yet.</strong> Replace the placeholder values in the <code>&lt;script&gt;</code> section of this file with your real Firebase config.
+            Visit <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> to get them.
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-cards">
+          <div class="stat-card red">
+            <div class="stat-label">Total Submissions</div>
+            <div class="stat-value" id="stat-total">—</div>
+          </div>
+          <div class="stat-card gold">
+            <div class="stat-label">Unread</div>
+            <div class="stat-value" id="stat-unread">—</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-label">Today</div>
+            <div class="stat-value" id="stat-today">—</div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-label">This Week</div>
+            <div class="stat-value" id="stat-week">—</div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-title">All Messages</div>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="search-input" placeholder="Search name, email or phone…" oninput="filterTable()" />
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-card">
+          <div class="table-wrap">
+            <table id="submissions-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+                <tr><td colspan="8"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ── PANEL: Theme Studio ────────────────────────────── -->
+    <div class="dash-panel" id="panel-theme">
+      <div class="theme-studio">
+
+        <div class="ts-heading">
+          <h1>🎨 Theme Studio</h1>
+          <p>Customize your website's colors and gradient presets. Changes apply instantly to the live site.</p>
+        </div>
+
+        <div class="ts-grid">
+
+          <!-- Left column -->
+          <div>
+            <!-- Gradient Presets -->
+            <div class="ts-card" style="margin-bottom:1.5rem;">
+              <div class="ts-card-title">Gradient Presets</div>
+              <div class="preset-grid" id="preset-grid">
+
+                <div class="preset-swatch selected" data-preset="ims-classic"
+                  style="background: linear-gradient(135deg,#e8192c,#b5111f);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  IMS Classic
+                </div>
+
+                <div class="preset-swatch" data-preset="midnight-gold"
+                  style="background: linear-gradient(135deg,#1a1b2e,#f0c040);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Midnight Gold
+                </div>
+
+                <div class="preset-swatch" data-preset="royal-blue"
+                  style="background: linear-gradient(135deg,#1565c0,#42a5f5);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Royal Blue
+                </div>
+
+                <div class="preset-swatch" data-preset="forest"
+                  style="background: linear-gradient(135deg,#1b5e20,#66bb6a);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Forest
+                </div>
+
+                <div class="preset-swatch" data-preset="purple-haze"
+                  style="background: linear-gradient(135deg,#4a148c,#e040fb);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Purple Haze
+                </div>
+
+                <div class="preset-swatch" data-preset="sunset"
+                  style="background: linear-gradient(135deg,#e65100,#ffd54f);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Sunset
+                </div>
+
+                <div class="preset-swatch" data-preset="ocean"
+                  style="background: linear-gradient(135deg,#006064,#00e5ff);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Ocean
+                </div>
+
+                <div class="preset-swatch" data-preset="rose-gold"
+                  style="background: linear-gradient(135deg,#880e4f,#f48fb1);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Rose Gold
+                </div>
+
+                <div class="preset-swatch" data-preset="charcoal"
+                  style="background: linear-gradient(135deg,#212121,#757575);"
+                  onclick="selectPreset(this)">
+                  <span class="check">✓</span>
+                  Charcoal
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Custom Colors -->
+            <div class="ts-card" style="margin-bottom:1.5rem;">
+              <div class="ts-card-title">Custom Accent Colors</div>
+              <div class="color-row">
+                <label>Primary Color</label>
+                <input type="color" id="color-primary" value="#e8192c" oninput="updatePreview()">
+              </div>
+              <div class="color-row">
+                <label>Secondary / Gold Color</label>
+                <input type="color" id="color-secondary" value="#f0c040" oninput="updatePreview()">
+              </div>
+              <div class="color-row">
+                <label>Button Text Color</label>
+                <input type="color" id="color-btntext" value="#ffffff" oninput="updatePreview()">
+              </div>
+            </div>
+
+            <!-- Default Mode -->
+            <div class="ts-card">
+              <div class="ts-card-title">Default Page Mode</div>
+              <div class="mode-toggles">
+                <button class="mode-btn selected" id="mode-light" onclick="selectMode('light')">
+                  ☀️ Light Mode
+                </button>
+                <button class="mode-btn" id="mode-dark" onclick="selectMode('dark')">
+                  🌙 Dark Mode
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: Live Preview -->
+          <div>
+            <div class="ts-card">
+              <div class="ts-card-title">Live Preview</div>
+              <div class="ts-preview" id="live-preview">
+                <div class="preview-bar" id="prev-bar" style="background:#fff;color:rgba(0,0,0,0.6);">
+                  <div class="dot" style="background:#e8192c;"></div>
+                  <span>IMS Security Services</span>
+                  <span style="margin-left:auto;font-size:.65rem;opacity:.5;">HOME · COMPANY · CONTACT</span>
+                </div>
+                <div class="preview-hero" id="prev-hero" style="background:#fff;">
+                  <h3 id="prev-title" style="color:#12131f;">Change the way<br>you secure</h3>
+                  <p id="prev-sub" style="color:#6b7280;">Peace of mind, 24/7 nationwide protection.</p>
+                  <div class="preview-btn" id="prev-btn"
+                    style="background:#12131f;color:#fff;">Get a free quote</div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:.8rem;background:#f8f9ff;" id="prev-cards">
+                  <div style="background:#fff;border-radius:8px;padding:.7rem;text-align:center;font-size:.65rem;">
+                    <div style="width:20px;height:20px;border-radius:5px;background:#e8192c;margin:0 auto .4rem;"></div>
+                    <span id="prev-card-text" style="color:#12131f;font-weight:600;">Security</span>
+                  </div>
+                  <div style="background:#fff;border-radius:8px;padding:.7rem;text-align:center;font-size:.65rem;">
+                    <div style="width:20px;height:20px;border-radius:5px;background:#e8192c;margin:0 auto .4rem;"></div>
+                    <span style="color:#12131f;font-weight:600;" class="p-card-t">Facility</span>
+                  </div>
+                  <div style="background:#fff;border-radius:8px;padding:.7rem;text-align:center;font-size:.65rem;">
+                    <div style="width:20px;height:20px;border-radius:5px;background:#e8192c;margin:0 auto .4rem;"></div>
+                    <span style="color:#12131f;font-weight:600;" class="p-card-t">Training</span>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn-apply-theme" onclick="applyTheme()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                Apply Theme to Website
+              </button>
+              <div class="ts-success" id="ts-success">
+                ✅ Theme applied! Refresh your website to see the changes.
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+    </div>
 
-      <!-- Firebase config warning (shown until configured) -->
-      <div class="config-banner" id="config-banner" style="display:none;">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        <div class="config-banner-text">
-          <strong>Firebase not configured yet.</strong> Replace the placeholder values in the <code>&lt;script&gt;</code> section of this file with your real Firebase config.
-          Visit <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> to get them.
-        </div>
-      </div>
-
-      <!-- Stat cards -->
-      <div class="stat-cards">
-        <div class="stat-card red">
-          <div class="stat-label">Total Submissions</div>
-          <div class="stat-value" id="stat-total">—</div>
-        </div>
-        <div class="stat-card gold">
-          <div class="stat-label">Unread</div>
-          <div class="stat-value" id="stat-unread">—</div>
-        </div>
-        <div class="stat-card green">
-          <div class="stat-label">Today</div>
-          <div class="stat-value" id="stat-today">—</div>
-        </div>
-        <div class="stat-card blue">
-          <div class="stat-label">This Week</div>
-          <div class="stat-value" id="stat-week">—</div>
-        </div>
-      </div>
-
-      <!-- Toolbar -->
-      <div class="toolbar">
-        <div class="toolbar-title">All Messages</div>
-        <div class="search-wrap">
-          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-          <input type="text" id="search-input" placeholder="Search name, email or phone…" oninput="filterTable()" />
-        </div>
-      </div>
-
-      <!-- Table -->
-      <div class="table-card">
-        <div class="table-wrap">
-          <table id="submissions-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Message</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-              <tr><td colspan="8"><div class="spinner"></div></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </main>
   </div>
 
   <!-- Firebase SDK -->
@@ -704,10 +1053,11 @@
         document.getElementById('dashboard').style.display    = 'block';
         err.textContent = '';
         initDashboard();
+        loadSavedTheme();
       } else {
         err.textContent = '❌ Incorrect password. Please try again.';
         card.classList.remove('shake');
-        void card.offsetWidth; // reflow
+        void card.offsetWidth;
         card.classList.add('shake');
         document.getElementById('pw-input').value = '';
       }
@@ -719,12 +1069,139 @@
       document.getElementById('pw-input').value = '';
     };
 
-    // Allow Enter key on login
     document.getElementById('pw-input').addEventListener('keydown', e => {
       if (e.key === 'Enter') window.doLogin();
     });
 
-    // ── Dashboard init ────────────────────────────────────────
+    // ── Tab switching ──────────────────────────────────────────
+    window.switchTab = function(tab) {
+      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+    };
+
+    // ── Theme Studio ────────────────────────────────────────────
+    const PRESETS = {
+      'ims-classic':  { primary: '#e8192c', secondary: '#f0c040', btnText: '#ffffff' },
+      'midnight-gold':{ primary: '#f0c040', secondary: '#1a1b2e', btnText: '#1a1b2e' },
+      'royal-blue':   { primary: '#1565c0', secondary: '#42a5f5', btnText: '#ffffff' },
+      'forest':       { primary: '#2e7d32', secondary: '#66bb6a', btnText: '#ffffff' },
+      'purple-haze':  { primary: '#7b1fa2', secondary: '#e040fb', btnText: '#ffffff' },
+      'sunset':       { primary: '#e65100', secondary: '#ffd54f', btnText: '#ffffff' },
+      'ocean':        { primary: '#006064', secondary: '#00e5ff', btnText: '#ffffff' },
+      'rose-gold':    { primary: '#880e4f', secondary: '#f48fb1', btnText: '#ffffff' },
+      'charcoal':     { primary: '#424242', secondary: '#9e9e9e', btnText: '#ffffff' },
+    };
+
+    window.selectPreset = function(el) {
+      document.querySelectorAll('.preset-swatch').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+      const p = PRESETS[el.dataset.preset];
+      if (p) {
+        document.getElementById('color-primary').value   = p.primary;
+        document.getElementById('color-secondary').value = p.secondary;
+        document.getElementById('color-btntext').value   = p.btnText;
+      }
+      updatePreview();
+    };
+
+    let currentMode = 'light';
+    window.selectMode = function(mode) {
+      currentMode = mode;
+      document.getElementById('mode-light').classList.toggle('selected', mode === 'light');
+      document.getElementById('mode-dark').classList.toggle('selected', mode === 'dark');
+      updatePreview();
+    };
+
+    window.updatePreview = function() {
+      const primary   = document.getElementById('color-primary').value;
+      const secondary = document.getElementById('color-secondary').value;
+      const btnText   = document.getElementById('color-btntext').value;
+      const isDark    = currentMode === 'dark';
+
+      const bg     = isDark ? '#0f1117' : '#ffffff';
+      const cardBg = isDark ? '#181a26' : '#ffffff';
+      const sectionBg = isDark ? '#181a26' : '#f8f9ff';
+      const text   = isDark ? '#e8eaf6' : '#12131f';
+      const muted  = isDark ? '#8892b0' : '#6b7280';
+      const navBg  = isDark ? 'rgba(13,14,31,0.97)' : 'rgba(255,255,255,0.97)';
+      const navText = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(18,19,31,0.7)';
+
+      document.getElementById('prev-bar').style.background = navBg;
+      document.getElementById('prev-bar').style.color = navText;
+      document.getElementById('prev-hero').style.background = bg;
+      document.getElementById('prev-title').style.color = text;
+      document.getElementById('prev-sub').style.color = muted;
+      document.getElementById('prev-btn').style.background = primary;
+      document.getElementById('prev-btn').style.color = btnText;
+      document.getElementById('prev-cards').style.background = sectionBg;
+
+      // Update card icons color
+      document.querySelectorAll('#prev-cards div > div').forEach(d => {
+        d.style.background = primary;
+      });
+      document.querySelectorAll('#prev-cards div').forEach(d => {
+        d.style.background = cardBg;
+      });
+      document.querySelectorAll('.p-card-t, #prev-card-text').forEach(t => {
+        t.style.color = text;
+      });
+      // Fix the icon divs back
+      document.querySelectorAll('#prev-cards > div > div').forEach(d => {
+        d.style.background = primary;
+      });
+
+      // Deselect presets if custom colors
+      const matchingPreset = Object.entries(PRESETS).find(([, p]) =>
+        p.primary.toLowerCase() === primary.toLowerCase() &&
+        p.secondary.toLowerCase() === secondary.toLowerCase()
+      );
+      document.querySelectorAll('.preset-swatch').forEach(s => s.classList.remove('selected'));
+      if (matchingPreset) {
+        document.querySelector(`[data-preset="${matchingPreset[0]}"]`)?.classList.add('selected');
+      }
+    };
+
+    window.applyTheme = function() {
+      const primary   = document.getElementById('color-primary').value;
+      const secondary = document.getElementById('color-secondary').value;
+      const btnText   = document.getElementById('color-btntext').value;
+      const preset    = document.querySelector('.preset-swatch.selected')?.dataset.preset || 'custom';
+
+      const themeConfig = { primary, secondary, btnText, mode: currentMode, preset, ts: Date.now() };
+      localStorage.setItem('ims-admin-theme', JSON.stringify(themeConfig));
+
+      // Build and inject a <style> override into a shared BroadcastChannel if supported
+      if (window.BroadcastChannel) {
+        const bc = new BroadcastChannel('ims-theme');
+        bc.postMessage(themeConfig);
+        bc.close();
+      }
+
+      const suc = document.getElementById('ts-success');
+      suc.style.display = 'block';
+      setTimeout(() => { suc.style.display = 'none'; }, 5000);
+    };
+
+    function loadSavedTheme() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('ims-admin-theme') || '{}');
+        if (saved.primary) {
+          document.getElementById('color-primary').value   = saved.primary;
+          document.getElementById('color-secondary').value = saved.secondary || '#f0c040';
+          document.getElementById('color-btntext').value   = saved.btnText || '#ffffff';
+          if (saved.mode) selectMode(saved.mode);
+          updatePreview();
+          if (saved.preset) {
+            const el = document.querySelector(`[data-preset="${saved.preset}"]`);
+            if (el) { document.querySelectorAll('.preset-swatch').forEach(s => s.classList.remove('selected')); el.classList.add('selected'); }
+          }
+        }
+      } catch(e) {}
+    }
+
+    // Dashboard init
     function initDashboard() {
       const isConfigured = firebaseConfig.apiKey !== 'YOUR_API_KEY';
 
@@ -759,21 +1236,18 @@
           </td></tr>`;
       });
 
-      // ── Mark read ──────────────────────────────────────────
       window.markRead = async function(id) {
         const btn = document.querySelector(`[data-id="${id}"].btn-mark`);
         if (btn) { btn.textContent = '…'; btn.disabled = true; }
         await updateDoc(doc(db, 'submissions', id), { read: true });
       };
 
-      // ── Delete ─────────────────────────────────────────────
       window.deleteDoc_ = async function(id) {
         if (!confirm('Delete this submission? This cannot be undone.')) return;
         await deleteDoc(doc(db, 'submissions', id));
       };
     }
 
-    // ── Render table ──────────────────────────────────────────
     function renderTable(docs) {
       const tbody = document.getElementById('table-body');
       if (!docs.length) {
@@ -817,7 +1291,6 @@
       }).join('');
     }
 
-    // ── Stats ──────────────────────────────────────────────────
     function updateStats(docs) {
       const now   = new Date();
       const today = now.toDateString();
@@ -840,7 +1313,6 @@
       document.getElementById('stat-week').textContent   = weekCnt;
     }
 
-    // ── Filter ─────────────────────────────────────────────────
     window.filterTable = function() {
       const q = document.getElementById('search-input').value.toLowerCase();
       const filtered = allDocs.filter(d =>
@@ -851,7 +1323,6 @@
       renderTable(filtered);
     };
 
-    // ── Escape HTML ────────────────────────────────────────────
     function esc(str) {
       return String(str)
         .replace(/&/g,'&amp;')
