@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMS Admin Panel</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e8192c;
+      --red-dark: #b5111f;
+      --red-glow: rgba(232,25,44,0.4);
+      --gold: #f0c040;
+      --dark: #0d0e1f;
+      --dark2: #1a1b2e;
+      --dark3: #22233a;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8eaf6;
+      --muted: rgba(255,255,255,0.45);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BG PATTERN ─────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 20%, rgba(232,25,44,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(240,192,64,0.06) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LOGIN SCREEN ───────────────────────────────────── */
+    #login-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      background: var(--dark);
+    }
+
+    #login-screen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,25,44,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .login-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(232,25,44,0.2);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 1;
+      animation: fade-up .6s cubic-bezier(.4,0,.2,1) both;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%       { transform: translateX(-10px); }
+      40%       { transform: translateX(10px); }
+      60%       { transform: translateX(-8px); }
+      80%       { transform: translateX(8px); }
+    }
+
+    .login-card.shake { animation: shake .4s ease; }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-logo img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      padding: 8px;
+    }
+
+    .login-logo h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: .7rem;
+      color: #fff;
+    }
+
+    .login-logo p {
+      font-size: .75rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: .2rem;
+    }
+
+    .login-field {
+      margin-bottom: 1.2rem;
+    }
+
+    .login-field label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+
+    .login-field input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: .85rem 1.1rem;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+
+    .login-field input:focus {
+      border-color: var(--red);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .login-error {
+      font-size: .8rem;
+      color: #ef9a9a;
+      text-align: center;
+      margin-bottom: .8rem;
+      min-height: 1.2em;
+      transition: opacity .2s;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: .95rem;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px var(--red-glow);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,25,44,0.5); }
+    .btn-login:active { transform: translateY(0); }
+
+    /* ── DASHBOARD ──────────────────────────────────────── */
+    #dashboard {
+      display: none;
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .dash-header {
+      background: rgba(13,14,31,0.97);
+      border-bottom: 1px solid rgba(232,25,44,0.2);
+      backdrop-filter: blur(20px);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+
+    .dash-brand {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .dash-brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      padding: 4px;
+    }
+
+    .dash-brand-text h2 {
+      font-size: .88rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .dash-brand-text span {
+      font-size: .68rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .dash-header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .dash-live {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .72rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .dash-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4caf50;
+      animation: pulse-green 2s ease infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(76,175,80,0.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(76,175,80,0); }
+    }
+
+    .btn-logout {
+      background: rgba(232,25,44,0.15);
+      border: 1px solid rgba(232,25,44,0.3);
+      color: #ef9a9a;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .45rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .btn-logout:hover { background: rgba(232,25,44,0.28); color: #fff; }
+
+    /* Main content */
+    .dash-main {
+      padding: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .dash-page-title {
+      margin-bottom: 1.8rem;
+    }
+
+    .dash-page-title h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .dash-page-title p {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: .3rem;
+    }
+
+    /* Stat cards */
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .stat-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .stat-card.red::before   { background: linear-gradient(90deg, var(--red), #ff6b6b); }
+    .stat-card.gold::before  { background: linear-gradient(90deg, var(--gold), #ffd54f); }
+    .stat-card.green::before { background: linear-gradient(90deg, #4caf50, #81c784); }
+    .stat-card.blue::before  { background: linear-gradient(90deg, #42a5f5, #90caf9); }
+
+    .stat-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .6rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .stat-card.red  .stat-value { color: #ff8a80; }
+    .stat-card.gold .stat-value { color: var(--gold); }
+    .stat-card.green .stat-value { color: #81c784; }
+    .stat-card.blue  .stat-value { color: #90caf9; }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .toolbar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: .85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      fill: var(--muted);
+      pointer-events: none;
+    }
+
+    #search-input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .6rem .9rem .6rem 2.4rem;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem;
+      outline: none;
+      width: 240px;
+      transition: border-color .2s, background .2s;
+    }
+
+    #search-input:focus { border-color: rgba(232,25,44,0.5); background: rgba(255,255,255,0.09); }
+    #search-input::placeholder { color: var(--muted); }
+
+    /* Table */
+    .table-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: rgba(255,255,255,0.04);
+      padding: .9rem 1.1rem;
+      text-align: left;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+    tbody tr.unread {
+      background: rgba(232,25,44,0.06);
+      border-left: 3px solid var(--red);
+    }
+
+    tbody tr.unread:hover { background: rgba(232,25,44,0.1); }
+
+    td {
+      padding: .9rem 1.1rem;
+      font-size: .82rem;
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    .td-name { font-weight: 700; color: #fff; white-space: nowrap; }
+    .td-phone { color: var(--gold); white-space: nowrap; }
+    .td-email { color: #90caf9; white-space: nowrap; }
+    .td-msg { max-width: 280px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .td-date { white-space: nowrap; color: var(--muted); font-size: .75rem; }
+
+    .badge-new {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: #fff;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .18rem .55rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px var(--red-glow);
+    }
+
+    .badge-read {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .18rem .55rem;
+      border-radius: 50px;
+    }
+
+    .action-btns { display: flex; gap: .5rem; white-space: nowrap; }
+
+    .btn-sm {
+      padding: .35rem .75rem;
+      border-radius: 7px;
+      font-size: .72rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background .15s, color .15s, transform .1s;
+    }
+    .btn-sm:hover { transform: translateY(-1px); }
+
+    .btn-mark {
+      background: rgba(76,175,80,0.15);
+      border-color: rgba(76,175,80,0.3);
+      color: #81c784;
+    }
+    .btn-mark:hover { background: rgba(76,175,80,0.28); color: #fff; }
+
+    .btn-del {
+      background: rgba(232,25,44,0.12);
+      border-color: rgba(232,25,44,0.25);
+      color: #ef9a9a;
+    }
+    .btn-del:hover { background: rgba(232,25,44,0.28); color: #fff; }
+
+    /* Empty + loading states */
+    .table-empty {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+    }
+
+    .table-empty svg { width: 48px; height: 48px; fill: rgba(255,255,255,0.1); margin-bottom: 1rem; }
+    .table-empty p { font-size: .88rem; }
+
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 3rem auto;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Firebase config banner */
+    .config-banner {
+      background: rgba(240,192,64,0.1);
+      border: 1px solid rgba(240,192,64,0.25);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .config-banner svg { fill: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+    .config-banner-text { font-size: .82rem; line-height: 1.7; color: rgba(255,255,255,0.7); }
+    .config-banner-text strong { color: var(--gold); }
+    .config-banner-text a { color: var(--gold); }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .dash-main { padding: 1rem; }
+      #search-input { width: 100%; }
+      .toolbar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── LOGIN SCREEN ─────────────────────────────────────────────── -->
+  <div id="login-screen">
+    <div class="login-card" id="login-card">
+      <div class="login-logo">
+        <img src="ims-logo.png" alt="IMS Logo" onerror="this.style.display='none'" />
+        <h1>IMS Admin Panel</h1>
+        <p>Integrated Multi Purpose Services</p>
+      </div>
+      <div class="login-field">
+        <label for="pw-input">Admin Password</label>
+        <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password" />
+      </div>
+      <div class="login-error" id="login-error"></div>
+      <button class="btn-login" id="btn-login" onclick="doLogin()">Sign In</button>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ─────────────────────────────────────────────────── -->
+  <div id="dashboard">
+
+    <!-- Header -->
+    <header class="dash-header">
+      <div class="dash-brand">
+        <img src="ims-logo.png" alt="IMS" onerror="this.style.display='none'" />
+        <div class="dash-brand-text">
+          <h2>IMS Administration</h2>
+          <span>Contact Dashboard</span>
+        </div>
+      </div>
+      <div class="dash-header-right">
+        <div class="dash-live">
+          <div class="dash-live-dot"></div>
+          Live
+        </div>
+        <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="dash-main">
+
+      <div class="dash-page-title">
+        <h1>Contact Submissions</h1>
+        <p>Real-time view of all messages sent via the website contact form.</p>
+      </div>
+
+      <!-- Firebase config warning (shown until configured) -->
+      <div class="config-banner" id="config-banner" style="display:none;">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <div class="config-banner-text">
+          <strong>Firebase not configured yet.</strong> Replace the placeholder values in the <code>&lt;script&gt;</code> section of this file with your real Firebase config.
+          Visit <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> to get them.
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="stat-cards">
+        <div class="stat-card red">
+          <div class="stat-label">Total Submissions</div>
+          <div class="stat-value" id="stat-total">—</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-label">Unread</div>
+          <div class="stat-value" id="stat-unread">—</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Today</div>
+          <div class="stat-value" id="stat-today">—</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-label">This Week</div>
+          <div class="stat-value" id="stat-week">—</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-title">All Messages</div>
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input type="text" id="search-input" placeholder="Search name, email or phone…" oninput="filterTable()" />
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-wrap">
+          <table id="submissions-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <tr><td colspan="8"><div class="spinner"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp }         from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy }
+      from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    /* ═══════════════════════════════════════════════════════════════
+       🔧 PASTE YOUR FIREBASE CONFIG HERE
+       Get this from Firebase Console → Project Settings → Your apps
+    ═══════════════════════════════════════════════════════════════ */
+    const firebaseConfig = {
+      apiKey:            "YOUR_API_KEY",
+      authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId:         "YOUR_PROJECT_ID",
+      storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId:             "YOUR_APP_ID"
+    };
+    /* ═══════════════════════════════════════════════════════════════ */
+
+    const ADMIN_PASSWORD = 'IMS@Admin9204';
+    let allDocs = [];
+
+    // ── Login / Logout ────────────────────────────────────────
+    window.doLogin = function() {
+      const pw = document.getElementById('pw-input').value;
+      const card = document.getElementById('login-card');
+      const err  = document.getElementById('login-error');
+
+      if (pw === ADMIN_PASSWORD) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('dashboard').style.display    = 'block';
+        err.textContent = '';
+        initDashboard();
+      } else {
+        err.textContent = '❌ Incorrect password. Please try again.';
+        card.classList.remove('shake');
+        void card.offsetWidth; // reflow
+        card.classList.add('shake');
+        document.getElementById('pw-input').value = '';
+      }
+    };
+
+    window.doLogout = function() {
+      document.getElementById('dashboard').style.display    = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('pw-input').value = '';
+    };
+
+    // Allow Enter key on login
+    document.getElementById('pw-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') window.doLogin();
+    });
+
+    // ── Dashboard init ────────────────────────────────────────
+    function initDashboard() {
+      const isConfigured = firebaseConfig.apiKey !== 'YOUR_API_KEY';
+
+      if (!isConfigured) {
+        document.getElementById('config-banner').style.display = 'flex';
+        document.getElementById('table-body').innerHTML = `
+          <tr><td colspan="8">
+            <div class="table-empty">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              <p>Firebase not configured.<br>Add your config to see submissions.</p>
+            </div>
+          </td></tr>`;
+        updateStats([]);
+        return;
+      }
+
+      const app = initializeApp(firebaseConfig);
+      const db  = getFirestore(app);
+      const q   = query(collection(db, 'submissions'), orderBy('timestamp', 'desc'));
+
+      onSnapshot(q, snap => {
+        allDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderTable(allDocs);
+        updateStats(allDocs);
+      }, err => {
+        console.error(err);
+        document.getElementById('table-body').innerHTML = `
+          <tr><td colspan="8">
+            <div class="table-empty">
+              <p>Error loading data: ${err.message}</p>
+            </div>
+          </td></tr>`;
+      });
+
+      // ── Mark read ──────────────────────────────────────────
+      window.markRead = async function(id) {
+        const btn = document.querySelector(`[data-id="${id}"].btn-mark`);
+        if (btn) { btn.textContent = '…'; btn.disabled = true; }
+        await updateDoc(doc(db, 'submissions', id), { read: true });
+      };
+
+      // ── Delete ─────────────────────────────────────────────
+      window.deleteDoc_ = async function(id) {
+        if (!confirm('Delete this submission? This cannot be undone.')) return;
+        await deleteDoc(doc(db, 'submissions', id));
+      };
+    }
+
+    // ── Render table ──────────────────────────────────────────
+    function renderTable(docs) {
+      const tbody = document.getElementById('table-body');
+      if (!docs.length) {
+        tbody.innerHTML = `
+          <tr><td colspan="8">
+            <div class="table-empty">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <p>No submissions yet. They'll appear here in real-time.</p>
+            </div>
+          </td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = docs.map((d, i) => {
+        const isUnread = !d.read;
+        const ts = d.timestamp?.toDate ? d.timestamp.toDate() : new Date(d.timestamp || Date.now());
+        const dateStr = ts.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+        const timeStr = ts.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+        const msg = (d.message || '').length > 80 ? d.message.substring(0, 80) + '…' : (d.message || '—');
+
+        return `
+          <tr class="${isUnread ? 'unread' : ''}">
+            <td style="color:var(--muted);font-size:.75rem;">${i + 1}</td>
+            <td class="td-name">${esc(d.name || '—')}</td>
+            <td class="td-phone">${esc(d.phone || '—')}</td>
+            <td class="td-email">${esc(d.email || '—')}</td>
+            <td class="td-msg">${esc(msg)}</td>
+            <td class="td-date">${dateStr}<br><span style="font-size:.7rem;">${timeStr}</span></td>
+            <td>${isUnread
+              ? '<span class="badge-new">New</span>'
+              : '<span class="badge-read">Read</span>'}</td>
+            <td>
+              <div class="action-btns">
+                ${isUnread
+                  ? `<button class="btn-sm btn-mark" data-id="${d.id}" onclick="markRead('${d.id}')">Mark Read</button>`
+                  : ''}
+                <button class="btn-sm btn-del" onclick="deleteDoc_('${d.id}')">Delete</button>
+              </div>
+            </td>
+          </tr>`;
+      }).join('');
+    }
+
+    // ── Stats ──────────────────────────────────────────────────
+    function updateStats(docs) {
+      const now   = new Date();
+      const today = now.toDateString();
+      const weekAgo = new Date(now - 7 * 864e5);
+
+      const total  = docs.length;
+      const unread = docs.filter(d => !d.read).length;
+      const todayCnt = docs.filter(d => {
+        const ts = d.timestamp?.toDate ? d.timestamp.toDate() : new Date(d.timestamp || 0);
+        return ts.toDateString() === today;
+      }).length;
+      const weekCnt = docs.filter(d => {
+        const ts = d.timestamp?.toDate ? d.timestamp.toDate() : new Date(d.timestamp || 0);
+        return ts >= weekAgo;
+      }).length;
+
+      document.getElementById('stat-total').textContent  = total;
+      document.getElementById('stat-unread').textContent = unread;
+      document.getElementById('stat-today').textContent  = todayCnt;
+      document.getElementById('stat-week').textContent   = weekCnt;
+    }
+
+    // ── Filter ─────────────────────────────────────────────────
+    window.filterTable = function() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const filtered = allDocs.filter(d =>
+        (d.name  || '').toLowerCase().includes(q) ||
+        (d.email || '').toLowerCase().includes(q) ||
+        (d.phone || '').toLowerCase().includes(q)
+      );
+      renderTable(filtered);
+    };
+
+    // ── Escape HTML ────────────────────────────────────────────
+    function esc(str) {
+      return String(str)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+  </script>
+
+</body>
+</html>

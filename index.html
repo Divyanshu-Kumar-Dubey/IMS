@@ -14,6 +14,41 @@
     gtag('config', 'G-XXXXXXXXXX');
   </script>
   <title>IMS – Integrated Multi Purpose Services | Security Solutions</title>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getFirestore, collection, addDoc, serverTimestamp }
+      from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    /* 🔧 PASTE YOUR FIREBASE CONFIG HERE (same as in admin.html) */
+    const firebaseConfig = {
+      apiKey:            "YOUR_API_KEY",
+      authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId:         "YOUR_PROJECT_ID",
+      storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId:             "YOUR_APP_ID"
+    };
+
+    let db = null;
+    try {
+      if (firebaseConfig.apiKey !== 'YOUR_API_KEY') {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+      }
+    } catch(e) { console.warn('Firebase init failed', e); }
+
+    window.__saveToFirestore = async function(data) {
+      if (!db) return;
+      try {
+        await addDoc(collection(db, 'submissions'), {
+          ...data,
+          timestamp: serverTimestamp(),
+          read: false
+        });
+      } catch(e) { console.warn('Firestore save failed', e); }
+    };
+  </script>
   <meta name="description" content="IMS – Integrated Multi Purpose Services. An ISO 9001:2015 certified company providing professional security services and solutions." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1355,6 +1390,16 @@
         cfToast.className = 'cf-toast';
         try {
           const data = new FormData(cfForm);
+          /* Save to Firebase Firestore */
+          if (typeof window.__saveToFirestore === 'function') {
+            await window.__saveToFirestore({
+              name:    cfForm.querySelector('[name="name"]').value,
+              phone:   cfForm.querySelector('[name="phone"]').value,
+              email:   cfForm.querySelector('[name="email"]').value,
+              message: cfForm.querySelector('[name="message"]').value
+            });
+          }
+          /* Also send via Web3Forms email */
           const res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: data });
           const json = await res.json();
           if (json.success) {
