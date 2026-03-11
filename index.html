@@ -12,12 +12,6 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
-
-    // Theme Initialization (Prevent FOUC)
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
   </script>
   <title>IMS – Integrated Multi Purpose Services | Security Solutions</title>
   <!-- Firebase SDK -->
@@ -1633,21 +1627,15 @@
       }
     }
 
-    // Set initial icon based on initialization script
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-      updateIcon(true);
-    }
-
+    // Always start in light mode – toggle is session-only
     if (themeToggleBtn) {
       themeToggleBtn.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         if (isDark) {
           document.documentElement.removeAttribute('data-theme');
-          localStorage.setItem('theme', 'light');
           updateIcon(false);
         } else {
           document.documentElement.setAttribute('data-theme', 'dark');
-          localStorage.setItem('theme', 'dark');
           updateIcon(true);
         }
       });
