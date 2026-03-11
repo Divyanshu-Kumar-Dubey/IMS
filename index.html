@@ -13,6 +13,51 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
+
+  <!-- Admin Theme Loader: reads theme set from admin panel and applies CSS variables -->
+  <script>
+    (function() {
+      try {
+        var cfg = JSON.parse(localStorage.getItem('ims-admin-theme') || 'null');
+        if (!cfg || !cfg.primary) return;
+
+        var root = document.documentElement;
+
+        // Helper: convert hex to rgba string
+        function hexToRgba(hex, alpha) {
+          var r = parseInt(hex.slice(1,3),16);
+          var g = parseInt(hex.slice(3,5),16);
+          var b = parseInt(hex.slice(5,7),16);
+          return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+        }
+
+        var p  = cfg.primary;   // e.g. "#e8192c"
+        var s  = cfg.secondary; // e.g. "#f0c040"
+        var bFallback = (p.length === 7) ? p + 'bb' : p; // darker shade fallback
+
+        // Apply all accent CSS variables
+        root.style.setProperty('--red',        p);
+        root.style.setProperty('--red-dark',   bFallback);
+        root.style.setProperty('--red-mid',    p);
+        root.style.setProperty('--red-glow',   p.length === 7 ? hexToRgba(p, 0.45) : p);
+        root.style.setProperty('--gold',       s);
+        root.style.setProperty('--gold-dark',  s);
+        root.style.setProperty('--grad-accent',
+          'linear-gradient(135deg,' + p + ' 0%,' + bFallback + ' 50%,' + s + ' 100%)');
+        root.style.setProperty('--grad-red',
+          'linear-gradient(135deg,' + p + ',' + bFallback + ')');
+        root.style.setProperty('--grad-section',
+          'linear-gradient(160deg,#0d0e1f,#1a0a1c,' + p + '33)');
+
+        // Apply dark/light mode
+        if (cfg.mode === 'dark') {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <title>IMS – Integrated Multi Purpose Services | Security Solutions</title>
   <!-- Firebase SDK -->
   <script type="module">
