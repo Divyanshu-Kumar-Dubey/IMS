@@ -210,136 +210,115 @@
     /* ─── HERO ────────────────────────────────────────────────── */
     .hero {
       position: relative;
-      min-height: 92vh;
+      min-height: 95vh;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       background: #ffffff;
+      padding: 0 4rem;
     }
 
-    /* Soft light background shift */
+    /* Subtle atmospheric background to keep it clean */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #ffffff, #fff5f5, #ffe8e8, #ffffff);
-      background-size: 300% 300%;
-      animation: hero-shift 12s ease infinite;
-      opacity: .6;
-    }
-
-    @keyframes hero-shift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .hero-bg-pattern {
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse 70% 60% at 30% 40%, rgba(232,25,44,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 75% 60%, rgba(232,25,44,0.05) 0%, transparent 55%),
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(232,25,44,0.025) 60px, rgba(232,25,44,0.025) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(232,25,44,0.025) 60px, rgba(232,25,44,0.025) 61px);
-      pointer-events: none;
-    }
-
-    /* Floating orbs */
-    .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      pointer-events: none;
-      animation: float-orb linear infinite;
-    }
-    .hero-orb-1 { width:400px;height:400px;background:rgba(232,25,44,0.08);top:-100px;left:-100px;animation-duration:18s; }
-    .hero-orb-2 { width:300px;height:300px;background:rgba(232,25,44,0.06);bottom:-80px;right:-80px;animation-duration:22s;animation-delay:-8s; }
-    .hero-orb-3 { width:200px;height:200px;background:rgba(240,192,64,0.06);top:40%;right:15%;animation-duration:15s;animation-delay:-4s; }
-
-    @keyframes float-orb {
-      0%   { transform: translate(0,0) scale(1); }
-      33%  { transform: translate(30px,-40px) scale(1.1); }
-      66%  { transform: translate(-20px,30px) scale(.95); }
-      100% { transform: translate(0,0) scale(1); }
-    }
-
-    .hero-glow {
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,25,44,0.06) 0%, rgba(232,25,44,0.03) 40%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse-glow 5s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+      background: linear-gradient(135deg, #ffffff 0%, #fffafa 50%, #fff0f0 100%);
+      opacity: 0.8;
+      z-index: 0;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      gap: 2rem;
-      animation: fade-up .9s cubic-bezier(.4,0,.2,1) both;
+      gap: 4rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     }
 
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hero-text-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: #0b0c10;
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      font-weight: 500;
+      line-height: 1.5;
+      color: #333333;
+      max-width: 90%;
+      margin: 0;
+    }
+
+    .btn-revolut {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1.2rem 2.5rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn-revolut:hover {
+      background-color: #222222;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo-card-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .logo-card {
       background: #ffffff;
-      border: 1px solid rgba(232,25,44,0.15);
-      border-radius: 20px;
-      padding: 3.5rem 5rem;
+      border: 1px solid rgba(0,0,0,0.04);
+      border-radius: 32px;
+      padding: 3.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1.5rem;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.15), 0 5px 15px rgba(232,25,44,0.08);
-      transition: transform .3s ease, box-shadow .3s ease;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.08), 0 10px 20px rgba(0,0,0,0.04);
+      width: 100%;
+      max-width: 450px;
+      transition: transform .4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    
     .logo-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 8px 25px rgba(232,25,44,0.12);
+      transform: translateY(-8px);
     }
 
-    .logo-text-block { text-align: center; }
-    .logo-text-block h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.3;
-      letter-spacing: .01em;
-    }
-    .logo-text-block p {
-      font-size: .78rem;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-top: .4rem;
-    }
-
-    .hero-tagline {
-      text-align: center;
-      color: rgba(100,20,30,0.55);
-      font-size: .85rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-weight: 600;
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ─── ABOUT STRIP ─────────────────────────────────────────── */
@@ -924,9 +903,9 @@
     /* ─── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 1024px) {
       .nav-link { padding: 1.15rem 0.8rem; font-size: .7rem; }
-      .logo-card { padding: 2.5rem 3.5rem; }
-      .logo-card img { width: clamp(200px, 30vw, 260px); }
-      .hero-tagline { font-size: .75rem; }
+      .hero-content { gap: 2rem; padding-top: 2rem; }
+      .logo-card { padding: 2rem; }
+      .logo-card img { width: clamp(160px, 30vw, 220px); }
       .cards { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
       .why-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
       .cf-row { gap: 1rem; }
@@ -954,25 +933,43 @@
       .nav-link { padding: .9rem .7rem; font-size: .73rem; }
 
       .hero { 
-        min-height: 70vh; 
-        width: 100%;
-        padding: 0 1rem;
+        min-height: auto; 
+        padding: 6rem 1rem 4rem;
         box-sizing: border-box;
       }
+      
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+
+      .hero-text-col {
+        align-items: center;
+      }
+      
+      .hero-title {
+        font-size: 2.8rem;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        text-align: center;
+        margin: 0 auto;
+      }
+
       .logo-card { 
-        padding: 1.5rem; 
+        padding: 2rem; 
         box-shadow: 0 8px 30px rgba(0,0,0,0.1), 0 3px 10px rgba(232,25,44,0.06); 
         width: 100%;
-        max-width: 320px;
+        max-width: 300px;
         box-sizing: border-box;
       }
       .logo-card img { 
         width: 100%;
-        max-width: 260px;
+        max-width: 200px;
         height: auto;
       }
-      .logo-text-block h2 { font-size: 1.1rem; }
-      .hero-tagline { font-size: .65rem; padding: 0 1rem; line-height: 1.6; }
 
       .section-header h2 { font-size: 1.8rem; }
       .section-header p { font-size: .85rem; padding: 0 1rem; }
@@ -1052,16 +1049,22 @@
 
   <!-- ── HERO ───────────────────────────────────────────────────── -->
   <section class="hero" id="home">
-    <div class="hero-bg-pattern"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-    <div class="hero-glow"></div>
     <div class="hero-content">
-      <div class="logo-card">
-        <img src="ims-logo.png" alt="IMS – Integrated Multi Purpose Services Logo" width="260" height="260" style="display:block;margin:0 auto;object-fit:contain;"/>
+      
+      <!-- Left Column: Typography & CTA -->
+      <div class="hero-text-col">
+        <h1 class="hero-title">Change the way<br>you secure</h1>
+        <p class="hero-subtitle">Home or business, local or global — get peace of mind with integrated facility management and 24/7 nationwide protection. Secure what matters most, in a tap.</p>
+        <a href="#contact" class="btn-revolut">Get a free quote</a>
       </div>
-      <p class="hero-tagline">Securing what matters most &nbsp;•&nbsp; 24/7 nationwide protection</p>
+
+      <!-- Right Column: Visual App/Card -->
+      <div class="logo-card-wrapper">
+        <div class="logo-card">
+          <img src="ims-logo.png" alt="IMS – Integrated Multi Purpose Services Logo" width="260" height="260" style="display:block;margin:0 auto;object-fit:contain;"/>
+        </div>
+      </div>
+
     </div>
   </section>
 
