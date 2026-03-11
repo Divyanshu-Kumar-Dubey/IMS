@@ -12,6 +12,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
+
+    // Theme Initialization (Prevent FOUC)
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
   </script>
   <title>IMS – Integrated Multi Purpose Services | Security Solutions</title>
   <!-- Firebase SDK -->
@@ -80,6 +86,17 @@
       --grad-accent: linear-gradient(135deg,#e8192c 0%,#8b0046 50%,#f0c040 100%);
       --grad-section: linear-gradient(160deg,#0d0e1f,#1a0a1c,#3a0010);
     }
+
+    [data-theme="dark"] {
+      --dark: #f8f9ff;
+      --dark2: #e2e8f0;
+      --dark3: #cbd5e1;
+      --white: #12131f;
+      --off-white: #1c1d30;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.09);
+    }
+
 
     html { scroll-behavior: smooth; }
 
@@ -206,6 +223,30 @@
     }
     .dropdown a:last-child { border-bottom: none; }
     .dropdown a:hover { background: rgba(232,25,44,0.15); color: #f0c040; padding-left: 1.7rem; }
+
+    /* ─── THEME TOGGLE ────────────────────────────────────────── */
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      padding: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--nav-text);
+      transition: background 0.2s, border-color 0.2s;
+      margin-left: auto; /* pushes it to the right */
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
 
     /* ─── HERO ────────────────────────────────────────────────── */
     .hero {
@@ -1044,6 +1085,12 @@
       <div class="nav-item">
         <a href="https://wa.me/917479558421" class="nav-link" id="nav-whatsapp" target="_blank" style="color:#f0c040;">&#128222; WhatsApp</a>
       </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+        <svg id="theme-icon" viewBox="0 0 24 24">
+          <!-- Default Moon Path (Dark mode icon to switch to) -->
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
     </nav>
   </header>
 
@@ -1495,6 +1542,42 @@
         }
         cfSubmit.disabled = false;
         cfSubmit.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg> Send Message';
+      });
+    }
+
+    /* ── Theme Toggle ─────────────────────────────────── */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // SVG Paths
+    const moonPath = "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"; // Moon
+    const sunPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"; // Sun
+    
+    function updateIcon(isDark) {
+      if(isDark) {
+        themeIcon.innerHTML = `<path d="${sunPath}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>`;
+      } else {
+        themeIcon.innerHTML = `<path d="${moonPath}"></path>`;
+      }
+    }
+
+    // Set initial icon based on initialization script
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+      updateIcon(true);
+    }
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          updateIcon(false);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          updateIcon(true);
+        }
       });
     }
   </script>
