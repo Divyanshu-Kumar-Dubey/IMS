@@ -1666,19 +1666,17 @@
   <!-- IMS-ADMIN-THEME-START -->
   <style id="ims-admin-theme">
     :root {
-      --red:         #7b1fa2 !important;
-      --red-dark:    #7b1fa2bb !important;
-      --red-mid:     #7b1fa2 !important;
-      --red-glow:    rgba(123,31,162,0.45) !important;
-      --gold:        #e040fb !important;
-      --gold-dark:   #e040fb !important;
-      --grad-accent: linear-gradient(135deg,#7b1fa2 0%,#7b1fa2bb 50%,#e040fb 100%) !important;
-      --grad-red:    linear-gradient(135deg,#7b1fa2,#7b1fa2bb) !important;
+      --red:         #e8192c !important;
+      --red-dark:    #e8192cbb !important;
+      --red-mid:     #e8192c !important;
+      --red-glow:    rgba(232,25,44,0.45) !important;
+      --gold:        #f0c040 !important;
+      --gold-dark:   #f0c040 !important;
+      --grad-accent: linear-gradient(135deg,#e8192c 0%,#e8192cbb 50%,#f0c040 100%) !important;
+      --grad-red:    linear-gradient(135deg,#e8192c,#e8192cbb) !important;
     }
-    html { color-scheme: dark; }
-    [data-theme="light"] {}
   </style>
-  <script id="ims-admin-mode">document.documentElement.setAttribute('data-theme','dark');</script>
+  <script id="ims-admin-mode">document.documentElement.removeAttribute('data-theme');</script>
   <!-- IMS-ADMIN-THEME-END -->
 </head>
 <body>
