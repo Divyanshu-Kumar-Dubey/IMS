@@ -1675,8 +1675,10 @@
       --grad-accent: linear-gradient(135deg,#7b1fa2 0%,#7b1fa2bb 50%,#e040fb 100%) !important;
       --grad-red:    linear-gradient(135deg,#7b1fa2,#7b1fa2bb) !important;
     }
+    html { color-scheme: dark; }
+    [data-theme="light"] {}
   </style>
-  <script id="ims-admin-mode">document.documentElement.removeAttribute('data-theme');</script>
+  <script id="ims-admin-mode">document.documentElement.setAttribute('data-theme','dark');</script>
   <!-- IMS-ADMIN-THEME-END -->
 </head>
 <body>
