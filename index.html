@@ -1088,6 +1088,34 @@
       0%   { transform: scale(1); opacity: 0.75; }
       100% { transform: scale(2.2); opacity: 0; }
     }
+    .wa-tooltip {
+      position: absolute;
+      right: 68px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #1a1a2e;
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: .45rem .9rem;
+      border-radius: 50px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .25s, right .25s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+    .wa-tooltip::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: #1a1a2e;
+      border-right: none;
+    }
+    .wa-float:hover .wa-tooltip { opacity: 1; right: 72px; }
 
     /* ─── CONTACT FORM ──────────────────────────────────────────── */
     .contact-form-section {
@@ -1216,7 +1244,7 @@
       transition: max-height .45s cubic-bezier(.4,0,.2,1), padding .35s;
       padding: 0 1.5rem;
     }
-    .faq-body.open { max-height: 300px; padding: 0 1.5rem 1.2rem; }
+    .faq-body.open { max-height: 600px; padding: 0 1.5rem 1.2rem; }
     .faq-body p { color: var(--text-muted); font-size: .88rem; line-height: 1.7; }
 
     /* ─── RESPONSIVE ──────────────────────────────────────────── */
@@ -1950,40 +1978,134 @@
   </section>
 
   <!-- ── FAQ ──────────────────────────────────────────────────────── -->
-  <section style="padding:4rem 1rem;background:#fff;" id="faq">
+  <section style="padding:5rem 1rem;background:var(--white);" id="faq">
     <div class="section-header reveal">
       <div class="section-tag">FAQ</div>
       <h2>Frequently Asked <span>Questions</span></h2>
-      <p>Can't find an answer? Reach us at <a href="mailto:dineshdubey@imsjsr.com" style="color:var(--red);">dineshdubey@imsjsr.com</a></p>
+      <p>Can't find an answer? Call us at <a href="tel:+917479558421" style="color:var(--red);">+91 7479558421</a> or email <a href="mailto:dineshdubey@imsjsr.com" style="color:var(--red);">dineshdubey@imsjsr.com</a></p>
     </div>
     <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;">
+
       <div class="faq-item reveal" id="faq-1">
         <button class="faq-q" aria-expanded="false">
           What security services does IMS provide?
           <span class="faq-chevron" aria-hidden="true"></span>
         </button>
         <div class="faq-body" id="faq-body-1">
-          <p>IMS Security provides security guard services for events, businesses, and residential properties. We offer armed and unarmed guards, mobile patrols, alarm response, and 24/7 CCTV monitoring services.</p>
+          <p>IMS Security provides a full range of security solutions including unarmed &amp; armed security guards, mobile patrol units, event security, corporate campus security, residential security, alarm response, and 24/7 CCTV monitoring. We also provide facility management, housekeeping, and trained bouncers for events.</p>
         </div>
       </div>
+
       <div class="faq-item reveal" id="faq-2">
         <button class="faq-q" aria-expanded="false">
-          How can I request a quote?
+          How much do your security guard services cost?
           <span class="faq-chevron" aria-hidden="true"></span>
         </button>
         <div class="faq-body" id="faq-body-2">
-          <p>You can request a quote by contacting us at <a href="mailto:dineshdubey@imsjsr.com" style="color:var(--red);">dineshdubey@imsjsr.com</a> or calling us at <a href="tel:+917479558421" style="color:var(--red);">+91 7479558421</a>, or by messaging us on WhatsApp.</p>
+          <p>Pricing depends on the type of service, number of guards required, location, and duration of deployment. We offer competitive, transparent pricing with no hidden charges. Contact us for a <strong>free customized quote</strong> within 24 hours. Most clients in the Jamshedpur region receive their quote the same business day.</p>
         </div>
       </div>
+
       <div class="faq-item reveal" id="faq-3">
         <button class="faq-q" aria-expanded="false">
-          Are your security guards licensed and trained?
+          Are your guards PSARA licensed?
           <span class="faq-chevron" aria-hidden="true"></span>
         </button>
         <div class="faq-body" id="faq-body-3">
-          <p>Yes, all of our security guards are licensed and trained professionals. They undergo extensive background checks and training to ensure they are qualified to provide top-quality security services.</p>
+          <p>Yes. IMS Security Services operates in full compliance with the <strong>Private Security Agencies Regulation Act (PSARA)</strong>. All our guards are verified, trained to PSARA standards, and our agency holds the required state licences to operate legally across Jharkhand and other states we serve.</p>
         </div>
       </div>
+
+      <div class="faq-item reveal" id="faq-4">
+        <button class="faq-q" aria-expanded="false">
+          Do you provide armed security guards?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-4">
+          <p>Yes, IMS provides <strong>armed security personnel</strong> for high-risk environments such as banks, jewellery showrooms, cash-in-transit, VIP protection, and sensitive industrial installations. Armed guards are deployed only where legally permissible and are fully licensed under applicable arms regulations.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" id="faq-5">
+        <button class="faq-q" aria-expanded="false">
+          What is your emergency response time?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-5">
+          <p>Our operations centre is active <strong>24 hours a day, 7 days a week, 365 days a year</strong>. For clients in Jamshedpur, our average emergency response time is under <strong>30 minutes</strong>. Our mobile patrol fleet is strategically positioned across the city to minimize response times at all times of day and night.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" id="faq-6">
+        <button class="faq-q" aria-expanded="false">
+          Which cities and areas do you cover?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-6">
+          <p>IMS currently operates in <strong>17+ cities</strong> across Jharkhand, Bihar, Odisha, and West Bengal. Our primary operations hub is <strong>Jamshedpur</strong>, and we have served clients across Ranchi, Bokaro, Dhanbad, Rourkela, Bhubaneswar, Kolkata, and beyond. If your location is not listed, contact us — we can often accommodate new locations.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" id="faq-7">
+        <button class="faq-q" aria-expanded="false">
+          Do you provide security for events?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-7">
+          <p>Absolutely. IMS has extensive experience in <strong>event security management</strong> — from corporate conferences and award functions to weddings, concerts, and large public gatherings. Services include crowd management, VIP security, access control, bag screening, and emergency evacuation planning.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" id="faq-8">
+        <button class="faq-q" aria-expanded="false">
+          How do you vet and train your security guards?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-8">
+          <p>Every IMS guard undergoes a rigorous <strong>5-stage recruitment process</strong>: document verification, police background check, physical fitness assessment, medical screening, and a structured 21-day training program. Training covers physical fitness, self-defence, first aid, fire safety, legal knowledge, and client-specific SOPs. Guards receive periodic refresher training throughout their tenure.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" id="faq-9">
+        <button class="faq-q" aria-expanded="false">
+          Can I hire security for my apartment complex or housing society?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-9">
+          <p>Yes. Residential security is one of our most popular offerings. We provide <strong>gate security, visitor management, night patrolling, and 24/7 guard deployment</strong> for housing societies, standalone residences, and gated communities. Plans are flexible — you can hire for single shifts or round-the-clock coverage.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" id="faq-10">
+        <button class="faq-q" aria-expanded="false">
+          What makes IMS different from other security companies in Jamshedpur?
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="faq-body" id="faq-body-10">
+          <p>IMS is <strong>ISO 9001:2015 certified</strong> — one of the few security agencies in Jharkhand to hold this international quality standard. Our edge includes ex-defence personnel leadership, a dedicated 24/7 command centre, transparent pricing, digital guard-tracking via GPS, and a proven 11+ year track record serving 100+ corporate and residential clients across 17 cities.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── GOOGLE MAP ─────────────────────────────────────────────── -->
+  <section id="map" style="padding:0;line-height:0;border-top:4px solid var(--red);">
+    <div style="position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;z-index:1;padding:1.5rem 2rem;background:linear-gradient(to bottom,rgba(0,0,0,0.55),transparent);pointer-events:none;">
+        <div style="display:inline-block;background:var(--red);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .9rem;border-radius:50px;margin-bottom:.4rem;">Find Us</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.4);">Our Office — Birsanagar, Jamshedpur</div>
+      </div>
+      <iframe
+        title="IMS Security Services Office Location"
+        src="https://maps.google.com/maps?q=Birsanagar+Jamshedpur+Jharkhand+831019&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="420"
+        style="border:0;display:block;"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
   </section>
 
@@ -2026,7 +2148,8 @@
   </div>
 
   <!-- ── WHATSAPP FLOAT ─────────────────────────────────────────── -->
-  <a class="wa-float" id="wa-float" href="https://wa.me/917479558421" target="_blank" rel="noopener" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+  <a class="wa-float" id="wa-float" href="https://wa.me/917479558421?text=Hello%20IMS%20Security%2C%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="wa-tooltip">Chat with us!</span>
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
       <path d="M16 2.933C8.768 2.933 2.933 8.768 2.933 16c0 2.31.627 4.474 1.718 6.338L2.4 29.067l6.905-1.811A13.02 13.02 0 0 0 16 29.067c7.232 0 13.067-5.835 13.067-13.067S23.232 2.933 16 2.933zm0 23.467a10.38 10.38 0 0 1-5.29-1.45l-.378-.225-3.928 1.03 1.047-3.823-.247-.393A10.356 10.356 0 0 1 5.6 16c0-5.73 4.67-10.4 10.4-10.4S26.4 10.27 26.4 16 21.73 26.4 16 26.4zm5.707-7.793c-.312-.156-1.85-.912-2.136-1.016-.287-.104-.496-.156-.705.156-.208.313-.808 1.016-.99 1.224-.183.208-.365.234-.677.078-.312-.156-1.318-.486-2.51-1.55-.928-.828-1.554-1.85-1.737-2.163-.182-.312-.02-.48.137-.636.14-.14.312-.365.468-.547.156-.183.208-.313.312-.521.104-.208.052-.39-.026-.547-.078-.156-.705-1.694-.966-2.32-.255-.607-.514-.524-.705-.534l-.6-.01c-.208 0-.547.078-.834.39-.286.313-1.094 1.068-1.094 2.606 0 1.538 1.12 3.023 1.276 3.23.156.208 2.204 3.365 5.337 4.718.746.322 1.328.515 1.781.66.748.238 1.43.204 1.968.124.6-.09 1.85-.756 2.11-1.488.26-.73.26-1.355.182-1.487-.077-.13-.286-.208-.6-.365z"/>
     </svg>
