@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1239,7 +1238,7 @@
       }
 
       /* Nav elements scrollable on mobile */
-      nav { 
+      nav:not(.mobile-nav) { 
         justify-content: flex-start;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -1248,8 +1247,8 @@
         max-width: 100vw;
         box-sizing: border-box;
       }
-      nav::-webkit-scrollbar { height: 4px; }
-      nav::-webkit-scrollbar-thumb { background: rgba(232,25,44,0.5); border-radius: 4px; }
+      nav:not(.mobile-nav)::-webkit-scrollbar { height: 4px; }
+      nav:not(.mobile-nav)::-webkit-scrollbar-thumb { background: rgba(232,25,44,0.5); border-radius: 4px; }
       .nav-item { flex-shrink: 0; }
       .nav-link { padding: .9rem .7rem; font-size: .73rem; }
 
@@ -1631,7 +1630,7 @@
     .mnav-sub a:hover { color: var(--red); padding-left: 2.8rem; }
 
     @media (max-width: 768px) {
-      nav { display: none !important; }
+      nav:not(.mobile-nav) { display: none !important; }
       .mob-header-bar { display: flex; }
       .mobile-nav { display: block; }
     }
