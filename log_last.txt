@@ -1,0 +1,5 @@
+commit 2e434dee2c9bbb88919275492d8257d8d6eebf18
+Author: IMS <user@ims.com>
+Date:   Wed Mar 11 15:42:06 2026 +0530
+
+    style: make website fully mobile and laptop responsive

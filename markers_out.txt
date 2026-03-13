@@ -1,0 +1,2 @@
+﻿No markers in admin.html
+CONFLICT FOUND IN index.html

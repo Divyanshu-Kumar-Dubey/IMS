@@ -1,0 +1,4 @@
+﻿257f1a8 fix(admin): correctly handle file SHA fetching and updates for theme push
+2e434de style: make website fully mobile and laptop responsive
+9ae334a style: enhance logo visibility in hero section
+2a1a788 Add and integrate admin dashboard and Firebase

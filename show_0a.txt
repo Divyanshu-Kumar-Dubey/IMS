@@ -1,0 +1,8 @@
+﻿commit 0af208b00b255db1021057eb24e368f4592054e2
+Author: Divyanshu-Kumar-Dubey <97219000+Divyanshu-Kumar-Dubey@users.noreply.github.com>
+Date:   Fri Mar 13 22:13:51 2026 +0530
+
+    theme: apply royal-blue preset (#1565c0)
+
+ index.html | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)

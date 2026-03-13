@@ -1,0 +1,7 @@
+﻿
+index.html:3687:      
+>>>>>>>75ed5b9 (style: make 
+website fully mobile and 
+laptop responsive)
+
+

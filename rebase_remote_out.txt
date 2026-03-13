@@ -1,0 +1,2 @@
+﻿Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html

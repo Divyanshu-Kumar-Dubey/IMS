@@ -1,0 +1,83 @@
+﻿interactive rebase in progress; onto 38716c1
+Last commands done (5 commands done):
+   pick e32c740 # theme: Update admin panel to match modern website theme
+   pick 7d1a670 # fix(admin): correctly handle file SHA fetching and updates for theme push
+  (see more in file .git/rebase-merge/done)
+No commands remaining.
+You are currently rebasing branch 'main' on '38716c1'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   admin.html
+	new file:   admin.html.bak
+	new file:   admin_res.txt
+	new file:   admin_res2.txt
+	new file:   admin_res_utf8.txt
+	new file:   debug_push.js
+	new file:   do_upload.js
+	modified:   do_upload.ps1
+	new file:   fix.js
+	new file:   git_push_out.txt
+	new file:   git_push_out_utf8.txt
+	new file:   git_status_utf8.txt
+	new file:   github_status.txt
+	new file:   github_status2.txt
+	new file:   github_status3.txt
+	new file:   github_status4.txt
+	new file:   gitstatus.txt
+	modified:   index.html
+	new file:   log.txt
+	new file:   out2.txt
+	new file:   patch_features.js
+	new file:   patch_sha_fix.js
+	new file:   patch_token.js
+	new file:   push_admin.js
+	new file:   push_admin_fix_log.txt
+	new file:   push_admin_ps.ps1
+	new file:   push_index_log.txt
+	new file:   push_nav_fix.js
+	new file:   push_ps.ps1
+	modified:   push_to_github.ps1
+	new file:   push_to_github_logs.txt
+	new file:   push_to_github_logs2.txt
+	new file:   refactor_css.js
+	new file:   result.txt
+	new file:   result_admin.txt
+	new file:   result_admin_utf8.txt
+	new file:   result_utf8.txt
+	new file:   status.txt
+	new file:   test.js
+	new file:   test_sha.ps1
+	new file:   theme.css
+	modified:   upload_log.txt
+	new file:   upload_log_utf8.txt
+	new file:   version.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	check_markers.ps1
+	contact_search.txt
+	debug_git.ps1
+	diff.txt
+	diff_admin.txt
+	difff.txt
+	git_status.txt
+	gitstatus2.txt
+	index_conflicts_end.txt
+	index_conflicts_ps.txt
+	log_last.txt
+	markers_out.txt
+	merge_admin.js
+	rebase.txt
+	rebase2.txt
+	rebase3.txt
+	rebase4.txt
+	show_e32c.txt
+	stage_admin.ps1
+	status3.txt
+	status4.txt
+	status_after_add.txt
+	status_debug.txt
+	status_debug_utf8.txt
+

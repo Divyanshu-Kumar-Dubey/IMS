@@ -1,0 +1,10 @@
+﻿257f1a8 fix(admin): correctly handle file SHA fetching and updates for theme push
+2e434de style: make website fully mobile and laptop responsive
+9ae334a style: enhance logo visibility in hero section
+2a1a788 Add and integrate admin dashboard and Firebase
+38716c1 theme: apply test
+28bb2e0 theme: apply test
+b168937 theme: apply to admin
+cc05888 fix: prevent stale SHA race - always fetch fresh SHA with no-store cache
+33f6c94 theme: apply ims-classic preset (#e8192c)
+09ced1c theme: apply purple-haze preset (#7b1fa2)

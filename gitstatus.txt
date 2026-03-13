@@ -1,0 +1,55 @@
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   admin.html
+	modified:   do_upload.ps1
+	modified:   index.html
+	modified:   push_to_github.ps1
+	modified:   upload_log.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	admin.html.bak
+	admin_res.txt
+	admin_res2.txt
+	admin_res_utf8.txt
+	debug_push.js
+	do_upload.js
+	git_push_out.txt
+	git_push_out_utf8.txt
+	git_status_utf8.txt
+	github_status.txt
+	github_status2.txt
+	github_status3.txt
+	github_status4.txt
+	gitstatus.txt
+	ims_facility.png
+	ims_security_team.png
+	ims_training.png
+	log.txt
+	out2.txt
+	patch_features.js
+	patch_sha_fix.js
+	patch_token.js
+	push_admin.js
+	push_admin_fix_log.txt
+	push_admin_ps.ps1
+	push_index_log.txt
+	push_nav_fix.js
+	push_ps.ps1
+	push_to_github_logs.txt
+	push_to_github_logs2.txt
+	refactor_css.js
+	result.txt
+	result_admin.txt
+	result_admin_utf8.txt
+	result_utf8.txt
+	status.txt
+	test.js
+	test_sha.ps1
+	theme.css
+	upload_log_utf8.txt
+	version.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")

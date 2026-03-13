@@ -1,0 +1,35 @@
+﻿
+=== IMS GitHub Uploader ===
+  Updating admin.html (sha: 5
+d433d690d9bbc050a39caf7438910
+71e8376597)
+  Error pushing admin.html : 
+{"message":"Repository rule 
+violations found\n\nSecret 
+detected in content\n\n","met
+adata":{"secret_scanning":{"b
+ypass_placeholders":[{"placeh
+older_id":"3AsA3yunkVsWxJI975
+L8fdmfJC9","token_type":"GITH
+UB_BASE64_ENCODED_PERSONAL_AC
+CESS_TOKEN"}]}},"documentatio
+n_url":"https://docs.github.c
+om/rest/repos/contents#create
+-or-update-file-contents","st
+atus":"409"}
+  Details: 
+{"message":"Repository rule 
+violations found\n\nSecret 
+detected in content\n\n","met
+adata":{"secret_scanning":{"b
+ypass_placeholders":[{"placeh
+older_id":"3AsA3yunkVsWxJI975
+L8fdmfJC9","token_type":"GITH
+UB_BASE64_ENCODED_PERSONAL_AC
+CESS_TOKEN"}]}},"documentatio
+n_url":"https://docs.github.c
+om/rest/repos/contents#create
+-or-update-file-contents","st
+atus":"409"}
+
+=== All files pushed! ===
