@@ -1748,7 +1748,8 @@
     }
 
     // Push a file to GitHub via the Contents API
-    async function pushToGitHub(content, commitMsg) {
+    // sha can be passed in to avoid double-fetch race condition
+    async function pushToGitHub(content, commitMsg, sha) {
       const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
       const headers = {
         'Authorization': `token ${GH_TOKEN}`,
@@ -1756,11 +1757,13 @@
         'Content-Type': 'application/json'
       };
 
-      // Get current SHA
-      const getRes = await fetch(url + `?ref=${GH_BRANCH}`, { headers });
-      if (!getRes.ok) throw new Error('Failed to fetch file from GitHub: ' + getRes.status);
-      const getJson = await getRes.json();
-      const sha = getJson.sha;
+      // Fetch SHA only if not pre-supplied (always use no-store to bypass cache)
+      if (!sha) {
+        const getRes = await fetch(url + `?ref=${GH_BRANCH}&t=${Date.now()}`, { headers, cache: 'no-store' });
+        if (!getRes.ok) throw new Error('Failed to fetch file from GitHub: ' + getRes.status);
+        const getJson = await getRes.json();
+        sha = getJson.sha;
+      }
 
       // Encode new content as base64
       const b64 = btoa(unescape(encodeURIComponent(content)));
@@ -1809,12 +1812,14 @@
       const suc = showStatus('⏳ Pushing theme to GitHub…', 'rgba(66,165,245,0.12)', 'rgba(66,165,245,0.35)', '#90caf9');
 
       try {
-        // Fetch current index.html from GitHub
-        const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`;
+        // Fetch current index.html from GitHub (no-store = always fresh SHA)
+        const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}&t=${Date.now()}`;
         const res = await fetch(url, {
-          headers: { 'Authorization': `token ${GH_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
+          headers: { 'Authorization': `token ${GH_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' },
+          cache: 'no-store'
         });
         const json = await res.json();
+        const freshSha = json.sha;
         let html = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
 
         // Remove old theme block if present
@@ -1824,8 +1829,8 @@
         const themeBlock = buildThemeStyleBlock(primary, secondary, btnText, currentMode);
         html = html.replace('</head>', `  ${themeBlock}\n</head>`);
 
-        // Push to GitHub
-        await pushToGitHub(html, `theme: apply ${preset} preset (${primary})`);
+        // Push to GitHub, passing freshSha to avoid second stale fetch
+        await pushToGitHub(html, `theme: apply ${preset} preset (${primary})`, freshSha);
         showStatus('✅ Theme pushed to GitHub! Live in ~30 seconds.', 'rgba(76,175,80,0.15)', 'rgba(76,175,80,0.3)', '#81c784');
       } catch(e) {
         showStatus('❌ GitHub push failed: ' + e.message, 'rgba(232,25,44,0.12)', 'rgba(232,25,44,0.3)', '#ef9a9a');
