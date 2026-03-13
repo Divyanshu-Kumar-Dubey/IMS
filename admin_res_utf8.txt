@@ -1,1 +1,0 @@
-﻿409 {"message":"Repository rule violations found\n\nSecret detected in content\n\n","metadata":{"secret_scanning":{"bypass_placeholders":[{"placeholder_id":"3AnVon6zsl7fRAJfyyIbCrKvwxN","token_type":"GITHUB_PERSONAL_ACCESS_TOKEN"}]}},"documentation_url":"https://docs.github.com/rest/repos/contents#create-or-update-file-contents","status":"409"}

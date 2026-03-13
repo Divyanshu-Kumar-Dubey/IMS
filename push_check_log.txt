@@ -1,0 +1,29 @@
+﻿commit d67475db5ff32ce066d36ffb556cbaba5193b68e
+Author: IMS <user@ims.com>
+Date:   Sat Mar 14 01:20:17 2026 +0530
+
+    fix: restore clean encoding for titles and meta tags
+
+commit 849b639e86900f3da332aa00335faf01596bfc50
+Author: IMS <user@ims.com>
+Date:   Sat Mar 14 01:15:41 2026 +0530
+
+    fix: cleanup duplicated CSS in index.html and resolve lint errors in do_upload.ps1
+
+commit 33a73b14b40c3c0f4e17ab8d5dc31babb005a298
+Author: IMS <user@ims.com>
+Date:   Sat Mar 14 01:06:59 2026 +0530
+
+    fix(admin): finalize theme push and resolve security violations with robust obfuscation
+
+commit a0d1ebd789e5e45d47c0e711b8b66619a05457f0
+Author: Divyanshu-Kumar-Dubey <97219000+Divyanshu-Kumar-Dubey@users.noreply.github.com>
+Date:   Fri Mar 13 22:15:59 2026 +0530
+
+    theme: apply ims-classic preset (#e8192c)
+
+commit 451dc1240408ccb05baf88b77e2403997b656d7f
+Author: Divyanshu-Kumar-Dubey <97219000+Divyanshu-Kumar-Dubey@users.noreply.github.com>
+Date:   Fri Mar 13 22:14:10 2026 +0530
+
+    theme: apply royal-blue preset (#1565c0)

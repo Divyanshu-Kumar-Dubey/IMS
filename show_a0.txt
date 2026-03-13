@@ -1,8 +1,0 @@
-﻿commit a0d1ebd789e5e45d47c0e711b8b66619a05457f0
-Author: Divyanshu-Kumar-Dubey <97219000+Divyanshu-Kumar-Dubey@users.noreply.github.com>
-Date:   Fri Mar 13 22:15:59 2026 +0530
-
-    theme: apply ims-classic preset (#e8192c)
-
- index.html | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)

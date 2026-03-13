@@ -1,0 +1,93 @@
+﻿On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    admin_res.txt
+	deleted:    admin_res2.txt
+	deleted:    admin_res_utf8.txt
+	deleted:    ahead.txt
+	deleted:    behind.txt
+	deleted:    branch_last.txt
+	deleted:    branch_vv.txt
+	deleted:    cleanup_err.txt
+	deleted:    cleanup_out.txt
+	deleted:    contact_search.txt
+	deleted:    diff.txt
+	deleted:    diff_admin.txt
+	deleted:    diff_admin_remote.txt
+	deleted:    fetch_out.txt
+	deleted:    footer_search.txt
+	deleted:    git_push_out.txt
+	deleted:    git_push_out_utf8.txt
+	deleted:    git_status.txt
+	deleted:    git_status_utf8.txt
+	deleted:    github_status.txt
+	deleted:    github_status2.txt
+	deleted:    github_status3.txt
+	deleted:    github_status4.txt
+	deleted:    gitstatus.txt
+	deleted:    gitstatus2.txt
+	deleted:    index_conflicts_end.txt
+	deleted:    index_conflicts_ps.txt
+	deleted:    log.txt
+	deleted:    log_final.txt
+	deleted:    log_last.txt
+	deleted:    log_short.txt
+	deleted:    marker_final.txt
+	deleted:    markers_out.txt
+	deleted:    merge_out.txt
+	deleted:    origin_log.txt
+	deleted:    out2.txt
+	deleted:    push_admin_fix_log.txt
+	deleted:    push_attempt.txt
+	deleted:    push_final.txt
+	deleted:    push_final_log.txt
+	deleted:    push_final_v2.txt
+	deleted:    push_index_log.txt
+	deleted:    push_to_github_logs.txt
+	deleted:    push_to_github_logs2.txt
+	deleted:    push_v.txt
+	deleted:    rebase.txt
+	deleted:    rebase2.txt
+	deleted:    rebase3.txt
+	deleted:    rebase4.txt
+	deleted:    rebase_continue.txt
+	deleted:    rebase_index_conflicts.txt
+	deleted:    rebase_index_conflicts_end.txt
+	deleted:    rebase_remote_out.txt
+	deleted:    rebase_remote_status.txt
+	deleted:    refs.txt
+	deleted:    refs_remote.txt
+	deleted:    remote_branches.txt
+	deleted:    remote_v.txt
+	deleted:    result.txt
+	deleted:    result_admin.txt
+	deleted:    result_admin_utf8.txt
+	deleted:    result_utf8.txt
+	deleted:    robots.txt
+	deleted:    show_0a.txt
+	deleted:    show_45.txt
+	deleted:    show_a0.txt
+	deleted:    status.txt
+	deleted:    status3.txt
+	deleted:    status4.txt
+	deleted:    status_after_add.txt
+	deleted:    status_after_fetch.txt
+	deleted:    status_after_push.txt
+	deleted:    status_debug.txt
+	deleted:    status_debug_utf8.txt
+	deleted:    status_final.txt
+	deleted:    status_last_check.txt
+	deleted:    status_remote.txt
+	deleted:    status_upstream.txt
+	deleted:    upload_log.txt
+	deleted:    upload_log_utf8.txt
+	deleted:    version.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	push_check_status.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")

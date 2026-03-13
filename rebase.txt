@@ -1,21 +1,0 @@
-Vim: Warning: Output is not to a terminal
-[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;10r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[10;1H</COMMIT_EDITMSG"< [unix] 28L, 846B[1;1H[38;5;130mAdd and integrate admin dashboo[2;1Hard and Firebase[m
-
-[34m# [m[35mConflicts:[m
-[34m#       [m[31mindex.html[m
-
-[34m# Please enter the commit messs[8;1Hage for your changes. Lines st[m[8;1H[94m@@@                           [m[9;1H[1m[7m<ix] (18:12 13/03/2026)1,1 Top[1;1H[?25h[?4m[10;1H[?2004l[>4;m[23;2t[23;1t[m[10;1H[K[10;1H[?1004l[?2004l[?1l>[?1049l[23;0;0t[>4;m[detached HEAD 2a1a788] Add and integrate admin dashboard and Firebase
- 5 files changed, 1037 insertions(+)
- create mode 100644 do_upload.ps1
- create mode 100644 push_to_github.ps1
- create mode 100644 upload_all.ps1
- create mode 100644 upload_log.txt
-Rebasing (2/5)Rebasing (3/5)Auto-merging index.html
-CONFLICT (content): Merge conflict in index.html
-error: could not apply 75ed5b9... style: make website fully mobile and laptop responsive
-hint: Resolve all conflicts manually, mark them as resolved with
-hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
-hint: You can instead skip this commit: run "git rebase --skip".
-hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
-hint: Disable this message with "git config set advice.mergeConflict false"
-Could not apply 75ed5b9... # style: make website fully mobile and laptop responsive

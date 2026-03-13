@@ -1,9 +1,0 @@
-﻿
-Uploading: index.html
-  Existing SHA: 5b540959604696ecf2b06bb2326e9ca7c5c25fb3
-  Γ£à SUCCESS ΓÇö https://github.com/Divyanshu-Kumar-Dubey/IMS/blob/main/index.html
-
-Uploading: admin.html
-  Existing SHA: 5d433d690d9bbc050a39caf743891071e8376597
-
-Done!

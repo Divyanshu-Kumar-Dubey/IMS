@@ -1,2 +1,0 @@
-﻿Auto-merging index.html
-Merge made by the 'recursive' strategy.
