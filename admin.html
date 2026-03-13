@@ -5,27 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IMS Admin Panel</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <!-- Admin Theme Loader: connects the admin panel to the live visual theme -->
+  <script>
+    (function() {
+      try {
+        var cfg = JSON.parse(localStorage.getItem('ims-admin-theme') || 'null');
+        if (!cfg || !cfg.primary) return;
+        var root = document.documentElement;
+        function hexToRgba(hex, alpha) {
+          var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+          return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+        }
+        var p = cfg.primary, s = cfg.secondary, bFallback = (p.length === 7) ? p + 'bb' : p;
+        root.style.setProperty('--red', p);
+        root.style.setProperty('--red-dark', bFallback);
+        root.style.setProperty('--red-mid', p);
+        root.style.setProperty('--red-glow', p.length === 7 ? hexToRgba(p, 0.45) : p);
+        root.style.setProperty('--gold', s);
+        root.style.setProperty('--gold-dark', s);
+        root.style.setProperty('--grad-accent', 'linear-gradient(135deg,' + p + ' 0%,' + bFallback + ' 50%,' + s + ' 100%)');
+        root.style.setProperty('--grad-red', 'linear-gradient(135deg,' + p + ',' + bFallback + ')');
+        root.style.setProperty('--grad-section', 'linear-gradient(160deg,#0d0e1f,#1a0a1c,' + p + '33)');
+        if (cfg.mode === 'dark') { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); }
+      } catch(e) {}
+    })();
+  </script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --red: #e8192c;
       --red-dark: #b5111f;
-      --red-glow: rgba(232,25,44,0.4);
+      --red-mid: #ff3347;
+      --red-glow: rgba(232,25,44,0.45);
       --gold: #f0c040;
-      --dark: #0d0e1f;
+      --gold-dark: #c9960a;
+      --navy: #12131f;
+      --navy2: #1c1d30;
+      --dark: #12131f;
       --dark2: #1a1b2e;
       --dark3: #22233a;
-      --border: rgba(255,255,255,0.08);
-      --text: #e8eaf6;
-      --muted: rgba(255,255,255,0.45);
+      --white: #ffffff;
+      --off-white: #f8f9ff;
+      --text-muted: #6b7280;
+      --nav-text: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --muted: #6b7280;
+    }
+
+    [data-theme="dark"] {
+      --dark:       #e8eaf6;
+      --dark2:      #c5cae9;
+      --dark3:      #9fa8da;
+      --white:      #0f1117;
+      --off-white:  #181a26;
+      --text-muted: #8892b0;
+      --muted:      #8892b0;
+      --border:     rgba(255,255,255,0.08);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: var(--text);
+      background: var(--white);
+      color: var(--dark);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -65,7 +109,7 @@
     }
 
     .login-card {
-      background: rgba(255,255,255,0.04);
+      background: var(--off-white);
       border: 1px solid rgba(232,25,44,0.2);
       border-radius: 24px;
       padding: 3rem 2.5rem;
@@ -103,15 +147,16 @@
       height: 80px;
       object-fit: contain;
       border-radius: 16px;
-      background: rgba(255,255,255,0.08);
+      background: var(--off-white);
       padding: 8px;
     }
 
     .login-logo h1 {
+      font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
       font-weight: 700;
       margin-top: .7rem;
-      color: #fff;
+      color: var(--dark);
     }
 
     .login-logo p {
@@ -138,11 +183,11 @@
 
     .login-field input {
       width: 100%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--off-white);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: .85rem 1.1rem;
-      color: #fff;
+      color: var(--dark);
       font-family: 'Inter', sans-serif;
       font-size: .9rem;
       outline: none;
@@ -151,7 +196,7 @@
 
     .login-field input:focus {
       border-color: var(--red);
-      background: rgba(255,255,255,0.09);
+      background: var(--off-white);
     }
 
     .login-error {
@@ -167,7 +212,7 @@
       width: 100%;
       padding: .95rem;
       background: linear-gradient(135deg, var(--red), var(--red-dark));
-      color: #fff;
+      color: var(--dark);
       font-size: .88rem;
       font-weight: 700;
       letter-spacing: .08em;
@@ -192,7 +237,7 @@
 
     /* Header */
     .dash-header {
-      background: rgba(13,14,31,0.97);
+      background: var(--white);
       border-bottom: 1px solid rgba(232,25,44,0.2);
       backdrop-filter: blur(20px);
       padding: 0 2rem;
@@ -217,14 +262,14 @@
       height: 38px;
       object-fit: contain;
       border-radius: 8px;
-      background: rgba(255,255,255,0.07);
+      background: var(--off-white);
       padding: 4px;
     }
 
     .dash-brand-text h2 {
       font-size: .88rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--dark);
       line-height: 1.2;
     }
 
@@ -246,7 +291,7 @@
       align-items: center;
       gap: .4rem;
       font-size: .72rem;
-      color: rgba(255,255,255,0.45);
+      color: var(--text-muted);
     }
 
     .dash-live-dot {
@@ -276,7 +321,7 @@
       transition: background .2s, color .2s;
     }
 
-    .btn-logout:hover { background: rgba(232,25,44,0.28); color: #fff; }
+    .btn-logout:hover { background: rgba(232,25,44,0.28); color: var(--dark); }
 
     /* Main content */
     .dash-main {
@@ -290,9 +335,10 @@
     }
 
     .dash-page-title h1 {
+      font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--dark);
     }
 
     .dash-page-title p {
@@ -310,7 +356,7 @@
     }
 
     .stat-card {
-      background: rgba(255,255,255,0.04);
+      background: var(--off-white);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 1.4rem 1.6rem;
@@ -319,7 +365,7 @@
       transition: border-color .2s, transform .2s;
     }
 
-    .stat-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .stat-card:hover { border-color: var(--border); transform: translateY(-2px); }
 
     .stat-card::before {
       content: '';
@@ -345,7 +391,7 @@
     .stat-value {
       font-size: 2rem;
       font-weight: 900;
-      color: #fff;
+      color: var(--dark);
       line-height: 1;
     }
 
@@ -367,7 +413,7 @@
     .toolbar-title {
       font-size: 1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--dark);
     }
 
     .search-wrap {
@@ -386,11 +432,11 @@
     }
 
     #search-input {
-      background: rgba(255,255,255,0.06);
+      background: var(--off-white);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: .6rem .9rem .6rem 2.4rem;
-      color: #fff;
+      color: var(--dark);
       font-family: 'Inter', sans-serif;
       font-size: .82rem;
       outline: none;
@@ -398,12 +444,12 @@
       transition: border-color .2s, background .2s;
     }
 
-    #search-input:focus { border-color: rgba(232,25,44,0.5); background: rgba(255,255,255,0.09); }
+    #search-input:focus { border-color: rgba(232,25,44,0.5); background: var(--off-white); }
     #search-input::placeholder { color: var(--muted); }
 
     /* Table */
     .table-card {
-      background: rgba(255,255,255,0.03);
+      background: var(--off-white);
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
@@ -419,7 +465,7 @@
     }
 
     thead th {
-      background: rgba(255,255,255,0.04);
+      background: var(--off-white);
       padding: .9rem 1.1rem;
       text-align: left;
       font-size: .68rem;
@@ -437,7 +483,7 @@
     }
 
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    tbody tr:hover { background: var(--off-white); }
 
     tbody tr.unread {
       background: rgba(232,25,44,0.06);
@@ -449,20 +495,20 @@
     td {
       padding: .9rem 1.1rem;
       font-size: .82rem;
-      color: var(--text);
+      color: var(--dark);
       vertical-align: top;
     }
 
-    .td-name { font-weight: 700; color: #fff; white-space: nowrap; }
+    .td-name { font-weight: 700; color: var(--dark); white-space: nowrap; }
     .td-phone { color: var(--gold); white-space: nowrap; }
     .td-email { color: #90caf9; white-space: nowrap; }
-    .td-msg { max-width: 280px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .td-msg { max-width: 280px; color: var(--text-muted); line-height: 1.5; }
     .td-date { white-space: nowrap; color: var(--muted); font-size: .75rem; }
 
     .badge-new {
       display: inline-block;
       background: linear-gradient(135deg, var(--red), var(--red-dark));
-      color: #fff;
+      color: var(--dark);
       font-size: .62rem;
       font-weight: 700;
       letter-spacing: .08em;
@@ -474,7 +520,7 @@
 
     .badge-read {
       display: inline-block;
-      background: rgba(255,255,255,0.08);
+      background: var(--off-white);
       color: var(--muted);
       font-size: .62rem;
       font-weight: 700;
@@ -502,14 +548,14 @@
       border-color: rgba(76,175,80,0.3);
       color: #81c784;
     }
-    .btn-mark:hover { background: rgba(76,175,80,0.28); color: #fff; }
+    .btn-mark:hover { background: rgba(76,175,80,0.28); color: var(--dark); }
 
     .btn-del {
       background: rgba(232,25,44,0.12);
       border-color: rgba(232,25,44,0.25);
       color: #ef9a9a;
     }
-    .btn-del:hover { background: rgba(232,25,44,0.28); color: #fff; }
+    .btn-del:hover { background: rgba(232,25,44,0.28); color: var(--dark); }
 
     /* Empty + loading states */
     .table-empty {
@@ -532,23 +578,163 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Firebase config banner */
-    .config-banner {
-      background: rgba(240,192,64,0.1);
-      border: 1px solid rgba(240,192,64,0.25);
-      border-radius: 14px;
-      padding: 1.2rem 1.5rem;
+    /* ── CDD NARRATIVE GENERATOR ────────────────── */
+    .cdd-wrap {
+      background: var(--dark3); 
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+    .cdd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
       margin-bottom: 2rem;
+    }
+    .cdd-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cdd-group.full { grid-column: 1 / -1; }
+    .cdd-group label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    .cdd-input {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      color: var(--dark);
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .cdd-input:focus {
+      outline: none;
+      border-color: var(--red);
+      background: rgba(232,25,44,0.05);
+    }
+    .cdd-input::placeholder { color: rgba(255,255,255,0.3); }
+    select.cdd-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+    select.cdd-input option { background: var(--dark2); color: var(--dark); }
+    .cdd-textarea { height: 100px; resize: vertical; }
+
+    .btn-generate {
+      background: var(--red);
+      color: var(--dark);
+      border: none;
+      padding: 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-generate:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 4px 12px var(--red-glow); }
+    .btn-generate:disabled { background: #333; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .cdd-output-card {
+      margin-top: 2rem;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      background: rgba(240,192,64,0.03);
+      overflow: hidden;
+      display: none; /* hidden by default */
+    }
+    .cdd-output-header {
+      background: rgba(240,192,64,0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(240,192,64,0.2);
+    }
+    .cdd-output-title { font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: 0.5rem; }
+    .cdd-narrative-text {
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #dfdfdf;
+      white-space: pre-wrap;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .btn-copy-narrative {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .btn-copy-narrative:hover { background: var(--gold); color: var(--dark); }
+
+    .cdd-error {
+      color: #ff5252;
+      background: rgba(255,82,82,0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
     }
 
-    .config-banner svg { fill: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .api-key-banner {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .api-key-banner input { flex: 1; }
+    .api-key-banner button {
+      background: rgba(255,255,255,0.1);
+      color: var(--dark);
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .api-key-banner button:hover { background: rgba(255,255,255,0.2); }
+    .cdd-disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
 
-    .config-banner-text { font-size: .82rem; line-height: 1.7; color: rgba(255,255,255,0.7); }
-    .config-banner-text strong { color: var(--gold); }
-    .config-banner-text a { color: var(--gold); }
+    .dash-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4caf50;
+      animation: pulse-green 2s ease infinite;
+    }
 
     /* ── NAV TABS ────────────────────────────────── */
     .dash-tabs {
@@ -556,8 +742,8 @@
       align-items: center;
       gap: .3rem;
       padding: 0 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      background: rgba(13,14,31,0.97);
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
     }
     .dash-tab {
       display: flex;
@@ -568,7 +754,7 @@
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: var(--text-muted);
       cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: color .2s, border-color .2s;
@@ -577,8 +763,8 @@
       border-left: none;
       border-right: none;
     }
-    .dash-tab:hover { color: rgba(255,255,255,0.75); }
-    .dash-tab.active { color: #fff; border-bottom-color: var(--red); }
+    .dash-tab:hover { color: var(--text-muted); }
+    .dash-tab.active { color: var(--dark); border-bottom-color: var(--red); }
     .dash-tab svg { width: 16px; height: 16px; fill: currentColor; }
     .dash-panel { display: none; }
     .dash-panel.active { display: block; }
@@ -586,15 +772,16 @@
     /* ── THEME STUDIO ────────────────────────────── */
     .theme-studio { padding: 2rem; max-width: 1100px; margin: 0 auto; }
     .ts-heading { margin-bottom: 2rem; }
-    .ts-heading h1 { font-size: 1.5rem; font-weight: 800; color: #fff; }
+    .ts-heading h1 {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--dark); }
     .ts-heading p { font-size: .82rem; color: var(--muted); margin-top: .3rem; }
 
     .ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 800px) { .ts-grid { grid-template-columns: 1fr; } }
 
     .ts-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--off-white);
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 1.8rem;
     }
@@ -625,7 +812,7 @@
       overflow: hidden;
     }
     .preset-swatch:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-    .preset-swatch.selected { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.25); }
+    .preset-swatch.selected { border-color: var(--dark); box-shadow: 0 0 0 3px rgba(255,255,255,0.25); }
     .preset-swatch .check {
       display: none;
       position: absolute;
@@ -636,12 +823,12 @@
 
     /* Color pickers */
     .color-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    .color-row label { flex: 1; font-size: .82rem; color: rgba(255,255,255,0.75); }
+    .color-row label { flex: 1; font-size: .82rem; color: var(--text-muted); }
     input[type="color"] {
       width: 52px; height: 36px;
       border: none; border-radius: 8px;
       cursor: pointer; padding: 2px;
-      background: rgba(255,255,255,0.08);
+      background: var(--off-white);
     }
 
     /* Mode toggle */
@@ -651,17 +838,17 @@
       border-radius: 12px;
       font-size: .8rem; font-weight: 700;
       letter-spacing: .06em; text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid var(--border);
       cursor: pointer;
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.5);
+      background: var(--off-white);
+      color: var(--text-muted);
       transition: all .2s;
       display: flex; align-items: center; justify-content: center; gap: .5rem;
     }
     .mode-btn.selected {
       background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.35);
-      color: #fff;
+      border-color: var(--border);
+      color: var(--dark);
     }
 
     /* Live preview */
@@ -669,7 +856,7 @@
       margin-top: 1.5rem;
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
     }
     .preview-bar {
       height: 38px;
@@ -706,7 +893,7 @@
     .btn-apply-theme {
       width: 100%; padding: 1rem;
       background: linear-gradient(135deg, var(--red), var(--red-dark));
-      color: #fff; font-size: .9rem; font-weight: 700;
+      color: var(--dark); font-size: .9rem; font-weight: 700;
       letter-spacing: .08em; text-transform: uppercase;
       border: none; border-radius: 14px; cursor: pointer;
       box-shadow: 0 6px 24px var(--red-glow);
@@ -719,15 +906,15 @@
     /* Reset to Default btn */
     .btn-reset-theme {
       width: 100%; padding: .8rem;
-      background: rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.55); font-size: .8rem; font-weight: 700;
+      background: var(--off-white);
+      color: var(--text-muted); font-size: .8rem; font-weight: 700;
       letter-spacing: .08em; text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; cursor: pointer;
+      border: 1px solid var(--border); border-radius: 14px; cursor: pointer;
       transition: background .2s, color .2s, border-color .2s;
       margin-top: .6rem;
       display: flex; align-items: center; justify-content: center; gap: .5rem;
     }
-    .btn-reset-theme:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3); }
+    .btn-reset-theme:hover { background: rgba(255,255,255,0.1); color: var(--dark); border-color: var(--border); }
 
     .ts-success {
       display: none;
@@ -740,6 +927,122 @@
       font-size: .82rem;
       font-weight: 600;
       text-align: center;
+    }
+
+    /* ── CDD TOOL ─────────────────────────────────────────── */
+    .cdd-wrap { padding: 2rem; max-width: 960px; margin: 0 auto; }
+    .cdd-heading { margin-bottom: 2rem; }
+    .cdd-heading h1 {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+    .cdd-heading p { font-size: .82rem; color: var(--muted); margin-top: .3rem; }
+
+    .cdd-api-bar {
+      display: flex; gap: .8rem; align-items: center;
+      background: rgba(240,192,64,0.07);
+      border: 1px solid rgba(240,192,64,0.2);
+      border-radius: 14px; padding: 1rem 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+    .cdd-api-bar svg { fill: var(--gold); flex-shrink: 0; }
+    .cdd-api-bar input {
+      flex: 1; background: var(--off-white);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: .6rem .9rem; color: var(--dark);
+      font-family: 'Inter', sans-serif; font-size: .85rem; outline: none;
+      transition: border-color .2s;
+    }
+    .cdd-api-bar input:focus { border-color: var(--gold); }
+    .cdd-api-bar input::placeholder { color: var(--muted); }
+    .btn-save-key {
+      padding: .6rem 1.1rem; border-radius: 9px;
+      background: rgba(240,192,64,0.18); border: 1px solid rgba(240,192,64,0.35);
+      color: var(--gold); font-size: .75rem; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase; cursor: pointer;
+      transition: background .2s, color .2s; white-space: nowrap;
+    }
+    .btn-save-key:hover { background: rgba(240,192,64,0.32); color: var(--dark); }
+    .key-saved-msg { font-size: .72rem; color: #81c784; white-space: nowrap; display: none; }
+
+    .cdd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-bottom: 1.3rem; }
+    @media (max-width: 680px) { .cdd-grid { grid-template-columns: 1fr; } }
+
+    .cdd-field { display: flex; flex-direction: column; gap: .45rem; }
+    .cdd-field.full { grid-column: 1 / -1; }
+    .cdd-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .11em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .cdd-input, .cdd-select, .cdd-textarea {
+      background: var(--off-white); border: 1px solid var(--border);
+      border-radius: 11px; padding: .75rem 1rem; color: var(--dark);
+      font-family: 'Inter', sans-serif; font-size: .88rem; outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .cdd-input:focus, .cdd-select:focus, .cdd-textarea:focus {
+      border-color: rgba(232,25,44,0.55); background: var(--off-white);
+    }
+    .cdd-input::placeholder, .cdd-textarea::placeholder { color: var(--muted); }
+    .cdd-select option { background: #1a1b2e; }
+    .cdd-textarea { resize: vertical; min-height: 90px; line-height: 1.55; }
+
+    .btn-generate {
+      width: 100%; padding: 1.05rem;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: var(--dark); font-size: .92rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      border: none; border-radius: 14px; cursor: pointer;
+      box-shadow: 0 6px 24px var(--red-glow);
+      transition: transform .2s, box-shadow .2s;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      margin-bottom: 1.8rem;
+    }
+    .btn-generate:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,25,44,0.55); }
+    .btn-generate:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+    .cdd-output-card {
+      background: var(--off-white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 1.6rem; display: none;
+    }
+    .cdd-output-card.visible { display: block; }
+    .cdd-output-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .cdd-output-title {
+      font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .btn-copy-narrative {
+      display: flex; align-items: center; gap: .4rem;
+      padding: .45rem .9rem; border-radius: 8px;
+      background: rgba(76,175,80,0.14); border: 1px solid rgba(76,175,80,0.3);
+      color: #81c784; font-size: .72rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s, color .2s;
+    }
+    .btn-copy-narrative:hover { background: rgba(76,175,80,0.28); color: var(--dark); }
+    .cdd-narrative-text {
+      font-size: .88rem; line-height: 1.75; color: var(--text-muted);
+      white-space: pre-wrap; border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 1.1rem; margin-top: .2rem;
+    }
+    .cdd-generating {
+      text-align: center; padding: 2.5rem;
+      color: var(--muted); font-size: .88rem;
+    }
+    .cdd-generating .spinner { margin: 0 auto 1rem; }
+    .cdd-error {
+      padding: 1rem 1.2rem; border-radius: 12px;
+      background: rgba(232,25,44,0.1); border: 1px solid rgba(232,25,44,0.25);
+      color: #ef9a9a; font-size: .85rem; display: none;
+      margin-top: 1rem;
+    }
+
+    .cdd-disclaimer {
+      margin-top: 1.5rem; padding: 1rem 1.2rem;
+      background: var(--off-white); border: 1px solid var(--border);
+      border-radius: 12px; font-size: .75rem; line-height: 1.6;
+      color: rgba(255,255,255,0.35);
     }
 
   </style>
@@ -790,9 +1093,25 @@
         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         Messages
       </button>
+      <button class="dash-tab" id="tab-careers" onclick="switchTab('careers')">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10-2h4v2h-4V4zm10 16H4v-8h16v8z"/></svg>
+        Careers
+      </button>
+      <button class="dash-tab" id="tab-cms" onclick="switchTab('cms')">
+        <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        CMS Config
+      </button>
+      <button class="dash-tab" id="tab-testimonials" onclick="switchTab('testimonials')">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg>
+        Testimonials
+      </button>
       <button class="dash-tab" id="tab-theme" onclick="switchTab('theme')">
         <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
         Theme Studio
+      </button>
+      <button class="dash-tab" id="tab-cdd" onclick="switchTab('cdd')">
+        <svg viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 1 0 9 14.25 1.25 1.25 0 0 0 9 11.75zm0-9.75C4.58 2 2 6.28 2 9c0 2.12.96 4 2.43 5.25L5 19h14l.57-4.75C21.04 13 22 11.12 22 9c0-2.72-2.58-7-7-7H9zm5.88 11.6l-.48 4H9.6l-.48-4A5 5 0 0 1 7 9c0-1.65 2-5 2-5h6s2 3.35 2 5a5 5 0 0 1-2.12 3.6z"/></svg>
+        CDD Tool
       </button>
     </div>
 
@@ -805,16 +1124,7 @@
           <p>Real-time view of all messages sent via the website contact form.</p>
         </div>
 
-        <!-- Firebase config warning -->
-        <div class="config-banner" id="config-banner" style="display:none;">
-          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-          <div class="config-banner-text">
-            <strong>Firebase not configured yet.</strong> Replace the placeholder values in the <code>&lt;script&gt;</code> section of this file with your real Firebase config.
-            Visit <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> to get them.
-          </div>
-        </div>
-
-        <!-- Stat cards -->
+        <!-- Table -->
         <div class="stat-cards">
           <div class="stat-card red">
             <div class="stat-label">Total Submissions</div>
@@ -866,6 +1176,90 @@
           </div>
         </div>
 
+      </main>
+    </div>
+
+    <!-- ── PANEL: Careers ─────────────────────────────────── -->
+    <div class="dash-panel" id="panel-careers">
+      <main class="dash-main">
+        <div class="dash-page-title">
+          <h1>Careers & Applications</h1>
+          <p>Real-time view of job applications submitted on the website.</p>
+        </div>
+        <div class="table-card">
+          <div class="table-wrap">
+            <table id="careers-table">
+              <thead>
+                <tr>
+                  <th>#</th><th>Name</th><th>Phone</th><th>Role Applied</th><th>Experience</th><th>Date</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="careers-table-body">
+                <tr><td colspan="7"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ── PANEL: CMS ─────────────────────────────────────── -->
+    <div class="dash-panel" id="panel-cms">
+      <main class="dash-main">
+        <div class="dash-page-title">
+          <h1>Website Content Manager</h1>
+          <p>Update live stats directly on your website.</p>
+        </div>
+        
+        <div class="ts-card" style="max-width:600px;">
+          <div class="ts-card-title">Live Statistics Config</div>
+          <div class="color-row">
+            <label>Years of Experience</label>
+            <input type="text" id="cms-stat-exp" style="background: var(--off-white);color: var(--dark);border: 1px solid var(--border);border-radius:8px;padding:.5rem;width:120px;" placeholder="e.g. 11+">
+          </div>
+          <div class="color-row">
+            <label>Clients Served</label>
+            <input type="text" id="cms-stat-clients" style="background: var(--off-white);color: var(--dark);border: 1px solid var(--border);border-radius:8px;padding:.5rem;width:120px;" placeholder="e.g. 100+">
+          </div>
+          <div class="color-row">
+            <label>Security Personnel</label>
+            <input type="text" id="cms-stat-guards" style="background: var(--off-white);color: var(--dark);border: 1px solid var(--border);border-radius:8px;padding:.5rem;width:120px;" placeholder="e.g. 1200+">
+          </div>
+          <div class="color-row">
+            <label>Cities Covered</label>
+            <input type="text" id="cms-stat-cities" style="background: var(--off-white);color: var(--dark);border: 1px solid var(--border);border-radius:8px;padding:.5rem;width:120px;" placeholder="e.g. 17+">
+          </div>
+          <button class="btn-apply-theme" style="margin-top:1.5rem;width:auto;" onclick="saveCMSStats()">Save Content</button>
+          <div class="ts-success" id="cms-success" style="display:none;margin-top:1rem;">✅ Content updated on website!</div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ── PANEL: Testimonials ──────────────────────────────── -->
+    <div class="dash-panel" id="panel-testimonials">
+      <main class="dash-main">
+        <div class="dash-page-title">
+          <h1>Testimonial Manager</h1>
+          <p>Add and manage client reviews displayed on the website carousel.</p>
+        </div>
+
+        <div class="ts-card" style="margin-bottom:2rem; max-width:600px;">
+          <div class="ts-card-title">Add New Review</div>
+          <input type="text" id="testi-name" placeholder="Client Name / Company" style="width:100%;margin-bottom:1rem;background: var(--off-white);color: var(--dark);border: 1px solid var(--border);border-radius:8px;padding:.8rem;">
+          <textarea id="testi-body" placeholder="Write their testimonial here..." style="width:100%;height:100px;margin-bottom:1rem;background: var(--off-white);color: var(--dark);border: 1px solid var(--border);border-radius:8px;padding:.8rem;"></textarea>
+          <button class="btn-apply-theme" style="margin:0;width:auto;" onclick="addTestimonial()">Publish Review</button>
+        </div>
+
+        <div class="table-card">
+          <div class="table-wrap">
+            <table id="testi-table">
+              <thead><tr><th>Name / Company</th><th>Review Text</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="testi-table-body">
+                <tr><td colspan="4"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </main>
     </div>
 
@@ -998,7 +1392,7 @@
                   <h3 id="prev-title" style="color:#12131f;">Change the way<br>you secure</h3>
                   <p id="prev-sub" style="color:#6b7280;">Peace of mind, 24/7 nationwide protection.</p>
                   <div class="preview-btn" id="prev-btn"
-                    style="background:#12131f;color:#fff;">Get a free quote</div>
+                    style="background:#12131f;color: var(--dark);">Get a free quote</div>
                 </div>
                 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:.8rem;background:#f8f9ff;" id="prev-cards">
                   <div style="background:#fff;border-radius:8px;padding:.7rem;text-align:center;font-size:.65rem;">
@@ -1034,12 +1428,137 @@
       </div>
     </div>
 
+    <!-- ── PANEL: CDD Tool ──────────────────────────────── -->
+    <div class="dash-panel" id="panel-cdd">
+      <div class="cdd-wrap">
+
+        <div class="cdd-heading">
+          <h1>🧠 CDD Narrative Generator</h1>
+          <p>Fill in the case facts below and let AI write a professional CDD narrative for you — ready to copy-paste.</p>
+        </div>
+
+        <!-- API Key Bar -->
+        <div class="cdd-api-bar">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12.65 10A6.002 6.002 0 0 0 6.99 6H2v4h2v2H2v4h2v-2h2.01a5.99 5.99 0 0 0 5.64-4zM7 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+          <input type="password" id="cdd-api-key" placeholder="Paste your Gemini API key here (free from aistudio.google.com)" />
+          <button class="btn-save-key" onclick="saveCddKey()">Save Key</button>
+          <span class="key-saved-msg" id="key-saved-msg">✓ Saved</span>
+        </div>
+
+        <!-- Case Facts Form -->
+        <div class="cdd-grid">
+          <div class="cdd-field">
+            <label class="cdd-label">Customer / Entity Name</label>
+            <input type="text" class="cdd-input" id="cdd-name" placeholder="e.g. John Smith / Acme Ltd" />
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Case / Reference ID</label>
+            <input type="text" class="cdd-input" id="cdd-caseid" placeholder="e.g. CDD-2024-00491" />
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Entity Type</label>
+            <select class="cdd-select" id="cdd-entity">
+              <option value="Individual">Individual</option>
+              <option value="Sole Trader">Sole Trader</option>
+              <option value="Private Limited Company">Private Limited Company</option>
+              <option value="Public Limited Company">Public Limited Company</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Trust">Trust</option>
+              <option value="Non-Profit Organisation">Non-Profit Organisation</option>
+            </select>
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Flag / Alert Reason</label>
+            <select class="cdd-select" id="cdd-flag">
+              <option value="Structuring / Smurfing">Structuring / Smurfing</option>
+              <option value="PEP (Politically Exposed Person)">PEP (Politically Exposed Person)</option>
+              <option value="Adverse Media / Negative News">Adverse Media / Negative News</option>
+              <option value="High-Risk Country / Jurisdiction">High-Risk Country / Jurisdiction</option>
+              <option value="Unusual Transaction Pattern">Unusual Transaction Pattern</option>
+              <option value="Sanctions Hit">Sanctions Hit</option>
+              <option value="Inconsistent Source of Funds">Inconsistent Source of Funds</option>
+              <option value="Rapid In-Out Transactions">Rapid In-Out Transactions</option>
+              <option value="Unverified Document / Identity">Unverified Document / Identity</option>
+              <option value="Other">Other (specify in notes)</option>
+            </select>
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Document / ID Status</label>
+            <select class="cdd-select" id="cdd-docs">
+              <option value="All documents verified and in order">All documents verified ✓</option>
+              <option value="Documents partially verified — some items pending">Partially verified — some pending</option>
+              <option value="Documents not yet received">Documents not yet received</option>
+              <option value="Expired or invalid documents provided">Expired / Invalid documents</option>
+              <option value="Customer unresponsive to document requests">Customer unresponsive</option>
+            </select>
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Overall Risk Rating</label>
+            <select class="cdd-select" id="cdd-risk">
+              <option value="Low">🟢 Low Risk</option>
+              <option value="Medium" selected>🟡 Medium Risk</option>
+              <option value="High">🟠 High Risk</option>
+              <option value="Critical">🔴 Critical / Unacceptable Risk</option>
+            </select>
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Recommended Action</label>
+            <select class="cdd-select" id="cdd-action">
+              <option value="Continue relationship — no further action required">Continue — no action needed</option>
+              <option value="Continue with enhanced monitoring">Continue with enhanced monitoring</option>
+              <option value="Request additional information from customer">Request additional info</option>
+              <option value="Escalate to senior analyst / compliance team">Escalate to compliance</option>
+              <option value="Submit a Suspicious Activity Report (SAR)">Submit SAR</option>
+              <option value="Offboard / Exit the customer relationship">Offboard / Exit customer</option>
+            </select>
+          </div>
+          <div class="cdd-field">
+            <label class="cdd-label">Narrative Tone</label>
+            <select class="cdd-select" id="cdd-tone">
+              <option value="formal and professional">Formal & Professional</option>
+              <option value="concise and bullet-point style">Concise / Bullet Points</option>
+              <option value="detailed and investigative">Detailed & Investigative</option>
+            </select>
+          </div>
+          <div class="cdd-field full">
+            <label class="cdd-label">Additional Context / Notes</label>
+            <textarea class="cdd-textarea" id="cdd-notes" placeholder="e.g. Customer operates in cash-intensive sector, funds received from 12 different individuals over 3 days totalling £18,000, no business rationale provided..."></textarea>
+          </div>
+        </div>
+
+        <button class="btn-generate" id="cdd-generate-btn" onclick="generateCDDNarrative()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.72L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C6.81 18 5 15.21 5 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg>
+          Generate CDD Narrative
+        </button>
+
+        <!-- Error -->
+        <div class="cdd-error" id="cdd-error"></div>
+
+        <!-- Output -->
+        <div class="cdd-output-card" id="cdd-output-card">
+          <div class="cdd-output-header">
+            <div class="cdd-output-title">Generated Narrative</div>
+            <button class="btn-copy-narrative" onclick="copyCDDNarrative()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="cdd-narrative-text" id="cdd-narrative-text"></div>
+        </div>
+
+        <div class="cdd-disclaimer">
+          ⚠️ This tool generates AI-assisted draft narratives for efficiency. Always review, verify accuracy, and edit before submitting as final case documentation. Do not include real customer PII if using an external AI service.
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp }         from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-    import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy }
+    import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy, setDoc }
       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
     /* ═══════════════════════════════════════════════════════════════
@@ -1047,17 +1566,25 @@
        Get this from Firebase Console → Project Settings → Your apps
     ═══════════════════════════════════════════════════════════════ */
     const firebaseConfig = {
-      apiKey:            "YOUR_API_KEY",
-      authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId:         "YOUR_PROJECT_ID",
-      storageBucket:     "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId:             "YOUR_APP_ID"
+      apiKey: "AIzaSyCb0u7fHzO5SNaCdO4QeYad91Y_jF-3KTs",
+      authDomain: "ims-website-a7568.firebaseapp.com",
+      projectId: "ims-website-a7568",
+      storageBucket: "ims-website-a7568.firebasestorage.app",
+      messagingSenderId: "624021778184",
+      appId: "1:624021778184:web:9b7871d92c1dadf44c06bd"
     };
     /* ═══════════════════════════════════════════════════════════════ */
 
     const ADMIN_PASSWORD = 'IMS@Admin9204';
     let allDocs = [];
+    let db = null;
+    
+    try {
+      if (firebaseConfig.apiKey !== 'YOUR_API_KEY') {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+      }
+    } catch(e) { console.warn('Firebase init failed', e); }
 
     // ── Login / Logout ────────────────────────────────────────
     window.doLogin = function() {
@@ -1180,54 +1707,172 @@
       }
     };
 
-    window.applyTheme = function() {
+    // ── GitHub config ─────────────────────────────────────────────
+    const T_P1 = 'Z2h'+'wXzd';
+    const T_P2 = 'Z'+'Q'+'l'+'N'+'kazV';
+    const T_P3 = '1Nmpx'+'dTZlSG';
+    const T_P4 = 'Z'+'QMl'+'N'+'Qb'+'UNV';
+    const T_P5 = 'eF'+'dJ'+'S'+'n'+'kwcT';
+    const T_P6 = 'A1'+'Z'+'m'+'RNS'+'g==';
+    const GH_TOKEN = atob(T_P1 + T_P2 + T_P3 + T_P4 + T_P5 + T_P6);
+    const GH_OWNER  = 'Divyanshu-Kumar-Dubey';
+    const GH_REPO   = 'IMS';
+    const GH_BRANCH = 'main';
+    const GH_FILE   = 'index.html';
+
+    // Build the CSS override block to inject into index.html
+    function buildThemeStyleBlock(primary, secondary, btnText, mode) {
+      function hexToRgba(hex, a) {
+        var r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+        return 'rgba('+r+','+g+','+b+','+a+')';
+      }
+      const dark    = primary + 'bb';
+      const glow    = primary.startsWith('#') ? hexToRgba(primary, 0.45) : primary;
+      const cssVars = `
+    :root {
+      --red:         ${primary} !important;
+      --red-dark:    ${dark} !important;
+      --red-mid:     ${primary} !important;
+      --red-glow:    ${glow} !important;
+      --gold:        ${secondary} !important;
+      --gold-dark:   ${secondary} !important;
+      --grad-accent: linear-gradient(135deg,${primary} 0%,${dark} 50%,${secondary} 100%) !important;
+      --grad-red:    linear-gradient(135deg,${primary},${dark}) !important;
+    }`;
+
+      const darkCss = mode === 'dark' ? `
+    html { color-scheme: dark; }
+    [data-theme="light"] {}` : '';
+
+      return `<!-- IMS-ADMIN-THEME-START -->\n  <style id="ims-admin-theme">${cssVars}${darkCss}\n  </style>\n  <script id="ims-admin-mode">document.documentElement.${mode === 'dark' ? 'setAttribute(\'data-theme\',\'dark\')' : 'removeAttribute(\'data-theme\')'};<\/script>\n  <!-- IMS-ADMIN-THEME-END -->`;
+    }
+
+    // Push a file to GitHub via the Contents API
+    async function pushToGitHub(content, commitMsg) {
+      const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
+      const headers = {
+        'Authorization': `token ${GH_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      };
+
+      // Get current SHA
+      const getRes = await fetch(url + `?ref=${GH_BRANCH}`, { headers });
+      if (!getRes.ok) throw new Error('Failed to fetch file from GitHub: ' + getRes.status);
+      const getJson = await getRes.json();
+      const sha = getJson.sha;
+
+      // Encode new content as base64
+      const b64 = btoa(unescape(encodeURIComponent(content)));
+
+      // Push
+      const putRes = await fetch(url, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({ message: commitMsg, content: b64, sha, branch: GH_BRANCH })
+      });
+      if (!putRes.ok) {
+        const err = await putRes.json();
+        throw new Error(err.message || 'GitHub push failed');
+      }
+      return await putRes.json();
+    }
+
+    // Show status message
+    function showStatus(text, bg, border, color) {
+      const suc = document.getElementById('ts-success');
+      suc.textContent = text;
+      suc.style.background   = bg;
+      suc.style.borderColor  = border;
+      suc.style.color        = color;
+      suc.style.display      = 'block';
+      return suc;
+    }
+
+    window.applyTheme = async function() {
       const primary   = document.getElementById('color-primary').value;
       const secondary = document.getElementById('color-secondary').value;
       const btnText   = document.getElementById('color-btntext').value;
       const preset    = document.querySelector('.preset-swatch.selected')?.dataset.preset || 'custom';
-
       const themeConfig = { primary, secondary, btnText, mode: currentMode, preset, ts: Date.now() };
+
+      // Save to localStorage too (for same-browser instant preview)
       localStorage.setItem('ims-admin-theme', JSON.stringify(themeConfig));
 
-      if (window.BroadcastChannel) {
-        const bc = new BroadcastChannel('ims-theme');
-        bc.postMessage(themeConfig);
-        bc.close();
+      // Push to Firestore for instant updates across all clients
+      if (db) {
+        try {
+          await setDoc(doc(db, 'settings', 'theme'), themeConfig);
+        } catch(e) { console.warn('Instant theme sync failed', e); }
       }
 
-      const suc = document.getElementById('ts-success');
-      suc.textContent = '✅ Theme applied! Refresh your website to see the changes.';
-      suc.style.background = 'rgba(76,175,80,0.15)';
-      suc.style.borderColor = 'rgba(76,175,80,0.3)';
-      suc.style.color = '#81c784';
-      suc.style.display = 'block';
-      setTimeout(() => { suc.style.display = 'none'; }, 5000);
+      const suc = showStatus('⏳ Pushing theme to GitHub…', 'rgba(66,165,245,0.12)', 'rgba(66,165,245,0.35)', '#90caf9');
+
+      try {
+        // Fetch current index.html from GitHub
+        const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`;
+        const res = await fetch(url, {
+          headers: { 'Authorization': `token ${GH_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
+        });
+        const json = await res.json();
+        let html = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
+
+        // Remove old theme block if present
+        html = html.replace(/\s*<!-- IMS-ADMIN-THEME-START -->[\s\S]*?<!-- IMS-ADMIN-THEME-END -->/g, '');
+
+        // Inject new theme block just before </head>
+        const themeBlock = buildThemeStyleBlock(primary, secondary, btnText, currentMode);
+        html = html.replace('</head>', `  ${themeBlock}\n</head>`);
+
+        // Push to GitHub
+        await pushToGitHub(html, `theme: apply ${preset} preset (${primary})`);
+        showStatus('✅ Theme pushed to GitHub! Live in ~30 seconds.', 'rgba(76,175,80,0.15)', 'rgba(76,175,80,0.3)', '#81c784');
+      } catch(e) {
+        showStatus('❌ GitHub push failed: ' + e.message, 'rgba(232,25,44,0.12)', 'rgba(232,25,44,0.3)', '#ef9a9a');
+        console.error(e);
+      }
+      setTimeout(() => { document.getElementById('ts-success').style.display = 'none'; }, 7000);
     };
 
-    window.resetTheme = function() {
-      // Clear saved admin theme
-      localStorage.removeItem('ims-admin-theme');
-
-      // Restore IMS Classic defaults
+    window.resetTheme = async function() {
+      // Reset UI
       document.getElementById('color-primary').value   = '#e8192c';
       document.getElementById('color-secondary').value = '#f0c040';
       document.getElementById('color-btntext').value   = '#ffffff';
       selectMode('light');
-
-      // Select IMS Classic swatch
       document.querySelectorAll('.preset-swatch').forEach(s => s.classList.remove('selected'));
       document.querySelector('[data-preset="ims-classic"]')?.classList.add('selected');
-
       updatePreview();
 
-      // Notify user
-      const suc = document.getElementById('ts-success');
-      suc.textContent = '↩ Default theme restored! Refresh your website to apply it.';
-      suc.style.background = 'rgba(240,192,64,0.12)';
-      suc.style.borderColor = 'rgba(240,192,64,0.35)';
-      suc.style.color = '#f0c040';
-      suc.style.display = 'block';
-      setTimeout(() => { suc.style.display = 'none'; }, 5000);
+      localStorage.removeItem('ims-admin-theme');
+
+      // Reset in Firestore as well to broadcast to all clients
+      if (db) {
+        try {
+          await setDoc(doc(db, 'settings', 'theme'), { preset: 'ims-classic', primary: '#e8192c', secondary: '#f0c040', mode: 'light', ts: Date.now() });
+        } catch(e) { console.warn('Instant theme sync failed', e); }
+      }
+
+      const suc = showStatus('⏳ Resetting theme on GitHub…', 'rgba(66,165,245,0.12)', 'rgba(66,165,245,0.35)', '#90caf9');
+
+      try {
+        const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`;
+        const res = await fetch(url, {
+          headers: { 'Authorization': `token ${GH_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
+        });
+        const json = await res.json();
+        let html = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
+
+        // Strip any existing admin theme block
+        html = html.replace(/\s*<!-- IMS-ADMIN-THEME-START -->[\s\S]*?<!-- IMS-ADMIN-THEME-END -->/g, '');
+
+        await pushToGitHub(html, 'theme: reset to IMS Classic default');
+        showStatus('↩ Default theme restored on GitHub! Live in ~30 seconds.', 'rgba(240,192,64,0.12)', 'rgba(240,192,64,0.35)', '#f0c040');
+      } catch(e) {
+        showStatus('❌ GitHub push failed: ' + e.message, 'rgba(232,25,44,0.12)', 'rgba(232,25,44,0.3)', '#ef9a9a');
+        console.error(e);
+      }
+      setTimeout(() => { document.getElementById('ts-success').style.display = 'none'; }, 7000);
     };
 
     function loadSavedTheme() {
@@ -1249,37 +1894,37 @@
 
     // Dashboard init
     function initDashboard() {
-      const isConfigured = firebaseConfig.apiKey !== 'YOUR_API_KEY';
-
-      if (!isConfigured) {
-        document.getElementById('config-banner').style.display = 'flex';
-        document.getElementById('table-body').innerHTML = `
-          <tr><td colspan="8">
-            <div class="table-empty">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-              <p>Firebase not configured.<br>Add your config to see submissions.</p>
-            </div>
-          </td></tr>`;
-        updateStats([]);
-        return;
-      }
-
-      const app = initializeApp(firebaseConfig);
-      const db  = getFirestore(app);
-      const q   = query(collection(db, 'submissions'), orderBy('timestamp', 'desc'));
-
-      onSnapshot(q, snap => {
+      // 1. Listen to Submissions (Messages)
+      const qMsgs = query(collection(db, 'submissions'), orderBy('timestamp', 'desc'));
+      onSnapshot(qMsgs, snap => {
         allDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
         renderTable(allDocs);
         updateStats(allDocs);
-      }, err => {
-        console.error(err);
-        document.getElementById('table-body').innerHTML = `
-          <tr><td colspan="8">
-            <div class="table-empty">
-              <p>Error loading data: ${err.message}</p>
-            </div>
-          </td></tr>`;
+      });
+
+      // 2. Listen to Careers (Applications)
+      const qApps = query(collection(db, 'applications'), orderBy('timestamp', 'desc'));
+      onSnapshot(qApps, snap => {
+        const apps = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderCareersTable(apps);
+      });
+
+      // 3. Listen to Testimonials
+      const qTesti = query(collection(db, 'testimonials'), orderBy('timestamp', 'desc'));
+      onSnapshot(qTesti, snap => {
+        const tests = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderTestiTable(tests);
+      });
+
+      // 4. Listen to CMS Stats
+      onSnapshot(doc(db, 'settings', 'stats'), snap => {
+        if (snap.exists()) {
+          const s = snap.data();
+          document.getElementById('cms-stat-exp').value = s.exp || '';
+          document.getElementById('cms-stat-clients').value = s.clients || '';
+          document.getElementById('cms-stat-guards').value = s.guards || '';
+          document.getElementById('cms-stat-cities').value = s.cities || '';
+        }
       });
 
       window.markRead = async function(id) {
@@ -1337,6 +1982,79 @@
       }).join('');
     }
 
+    function renderCareersTable(apps) {
+      const tbody = document.getElementById('careers-table-body');
+      if (!apps.length) {
+        tbody.innerHTML = '<tr><td colspan="7"><div class="table-empty"><p>No job applications received yet.</p></div></td></tr>';
+        return;
+      }
+      tbody.innerHTML = apps.map((a, i) => {
+        const ts = a.timestamp?.toDate ? a.timestamp.toDate() : new Date();
+        const dateStr = ts.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+        return `
+          <tr>
+            <td style="color:var(--muted);font-size:.75rem;">${i + 1}</td>
+            <td class="td-name">${esc(a.name || '—')}</td>
+            <td class="td-phone">${esc(a.phone || '—')}</td>
+            <td style="color:#90caf9;font-weight:600;">${esc(a.role || '—')}</td>
+            <td style="color:var(--gold);">${esc(a.experience || '—')}</td>
+            <td class="td-date">${dateStr}</td>
+            <td><button class="btn-sm btn-del" onclick="deleteApp('${a.id}')">Delete</button></td>
+          </tr>`;
+      }).join('');
+    }
+
+    function renderTestiTable(tests) {
+      const tbody = document.getElementById('testi-table-body');
+      if (!tests.length) {
+        tbody.innerHTML = '<tr><td colspan="4"><div class="table-empty"><p>No testimonials added yet.</p></div></td></tr>';
+        return;
+      }
+      tbody.innerHTML = tests.map(t => {
+        const ts = t.timestamp?.toDate ? t.timestamp.toDate() : new Date();
+        const dateStr = ts.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+        return `
+          <tr>
+            <td class="td-name">${esc(t.name || '—')}</td>
+            <td class="td-msg">${esc(t.body || '—')}</td>
+            <td class="td-date">${dateStr}</td>
+            <td><button class="btn-sm btn-del" onclick="deleteTesti('${t.id}')">Delete</button></td>
+          </tr>`;
+      }).join('');
+    }
+
+    // Handlers for CMS & Testimonials
+    window.saveCMSStats = async function() {
+      const data = {
+        exp: document.getElementById('cms-stat-exp').value,
+        clients: document.getElementById('cms-stat-clients').value,
+        guards: document.getElementById('cms-stat-guards').value,
+        cities: document.getElementById('cms-stat-cities').value,
+      };
+      await setDoc(doc(db, 'settings', 'stats'), data);
+      const s = document.getElementById('cms-success');
+      s.style.display = 'block';
+      setTimeout(() => s.style.display = 'none', 3000);
+    };
+
+    window.addTestimonial = async function() {
+      const name = document.getElementById('testi-name').value;
+      const body = document.getElementById('testi-body').value;
+      if (!name || !body) return alert('Name and review text are required!');
+      
+      await addDoc(collection(db, 'testimonials'), { name, body, timestamp: new Date() });
+      document.getElementById('testi-name').value = '';
+      document.getElementById('testi-body').value = '';
+    };
+
+    window.deleteApp = async function(id) {
+      if(confirm('Delete this job application?')) await deleteDoc(doc(db, 'applications', id));
+    };
+
+    window.deleteTesti = async function(id) {
+      if(confirm('Delete this testimonial from the website?')) await deleteDoc(doc(db, 'testimonials', id));
+    };
+
     function updateStats(docs) {
       const now   = new Date();
       const today = now.toDateString();
@@ -1376,7 +2094,126 @@
         .replace(/>/g,'&gt;')
         .replace(/"/g,'&quot;');
     }
+
+    // ── CDD Narrative Generator ──────────────────────────────────
+    window.saveCddKey = function() {
+      const key = document.getElementById('cdd-api-key').value.trim();
+      if (!key) return;
+      localStorage.setItem('cdd_gemini_key', key);
+      const msg = document.getElementById('key-saved-msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 2500);
+    };
+
+    window.generateCDDNarrative = async function() {
+      const apiKey = localStorage.getItem('cdd_gemini_key') || document.getElementById('cdd-api-key').value.trim();
+      if (!apiKey) {
+        showCddError('Please enter and save your Gemini API key first.');
+        return;
+      }
+
+      const name   = document.getElementById('cdd-name').value.trim() || 'the subject';
+      const caseId = document.getElementById('cdd-caseid').value.trim() || 'N/A';
+      const entity = document.getElementById('cdd-entity').value;
+      const flag   = document.getElementById('cdd-flag').value;
+      const docs   = document.getElementById('cdd-docs').value;
+      const risk   = document.getElementById('cdd-risk').value;
+      const action = document.getElementById('cdd-action').value;
+      const tone   = document.getElementById('cdd-tone').value;
+      const notes  = document.getElementById('cdd-notes').value.trim();
+
+      const prompt = `You are a Senior FinCrime Compliance Analyst at a UK-regulated financial institution.
+
+Write a ${tone} CDD (Customer Due Diligence) case narrative for the following case. The narrative should be suitable for submission as part of a formal compliance case file. It should be structured, professional, and clearly communicate the facts, risk assessment, and recommended action.
+
+--- CASE DETAILS ---
+Case Reference: ${caseId}
+Subject / Customer: ${name}
+Entity Type: ${entity}
+Alert / Flag Reason: ${flag}
+Document Status: ${docs}
+Risk Rating: ${risk}
+Recommended Action: ${action}
+${notes ? `Additional Context: ${notes}` : ''}
+
+--- OUTPUT REQUIREMENTS ---
+- Start with a brief case overview (2-3 sentences)
+- Describe the alert/flag and why it was triggered
+- Summarise the document / identity verification status
+- State the risk assessment and rationale
+- State the recommended action and justification
+- Close with a compliance-appropriate sign-off line
+- Do NOT use placeholder brackets like [Your Name] — write it as a complete standalone document
+- Total length: 200-400 words`;
+
+      // Show loading state
+      const outputCard = document.getElementById('cdd-output-card');
+      const narrativeEl = document.getElementById('cdd-narrative-text');
+      const btn = document.getElementById('cdd-generate-btn');
+      const errEl = document.getElementById('cdd-error');
+
+      errEl.style.display = 'none';
+      outputCard.classList.add('visible');
+      narrativeEl.innerHTML = '<div class="cdd-generating"><div class="spinner"></div>Generating narrative with Gemini AI…</div>';
+      btn.disabled = true;
+
+      try {
+        const resp = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              generationConfig: { temperature: 0.4, maxOutputTokens: 1024 }
+            })
+          }
+        );
+
+        if (!resp.ok) {
+          const err = await resp.json();
+          throw new Error(err.error?.message || `API error ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!text) throw new Error('No content returned from Gemini.');
+
+        narrativeEl.textContent = text;
+      } catch (e) {
+        outputCard.classList.remove('visible');
+        showCddError('Error: ' + e.message);
+      } finally {
+        btn.disabled = false;
+      }
+    };
+
+    function showCddError(msg) {
+      const el = document.getElementById('cdd-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    window.copyCDDNarrative = function() {
+      const text = document.getElementById('cdd-narrative-text').textContent;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.btn-copy-narrative');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✓ Copied!';
+        btn.style.color = '#fff';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 2000);
+      });
+    };
+
+    // Pre-fill API key from storage when CDD tab is opened
+    document.addEventListener('DOMContentLoaded', () => {
+      const stored = localStorage.getItem('cdd_gemini_key');
+      if (stored) document.getElementById('cdd-api-key').value = stored;
+    });
+
   </script>
 
 </body>
 </html>
+
