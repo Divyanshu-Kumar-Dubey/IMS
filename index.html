@@ -1,12 +1,15 @@
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
   <!-- Admin theme overrides (managed by admin panel) -->
-  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/theme.css" />
   <!-- Google Analytics -->
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -61,25 +64,25 @@
   <title>IMS – Integrated Multi Purpose Services | Security Solutions Jamshedpur</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="IMS – Integrated Multi Purpose Services. An ISO 9001:2015 certified company providing professional security guards, bouncers, and facility management services across Jamshedpur and India.">
-  <meta name="keywords" content="Security Services Jamshedpur, Security Guards Jamshedpur, Bouncers Jamshedpur, IMS Security, Integrated Multi Purpose Services, Facility Management Jharkhand, Best Security Agency Jamshedpur, Armed Guards">
-  <meta name="author" content="IMS Security Services">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
+  <meta name="description" content="IMS – Integrated Multi Purpose Services. An ISO 9001:2015 certified company providing professional security guards, bouncers, and facility management services across Jamshedpur and India." />
+  <meta name="keywords" content="Security Services Jamshedpur, Security Guards Jamshedpur, Bouncers Jamshedpur, IMS Security, Integrated Multi Purpose Services, Facility Management Jharkhand, Best Security Agency Jamshedpur, Armed Guards" />
+  <meta name="author" content="IMS Security Services" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
 
   <!-- Open Graph / Social Media -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://imsjsr.com/">
-  <meta property="og:title" content="IMS – Integrated Multi Purpose Services | Security Solutions">
-  <meta property="og:description" content="Top-rated ISO 9001:2015 certified security and facility management services in Jamshedpur. 24/7 nationwide protection you can trust.">
-  <meta property="og:image" content="https://imsjsr.com/ims-logo.png">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://imsjsr.com/" />
+  <meta property="og:title" content="IMS – Integrated Multi Purpose Services | Security Solutions" />
+  <meta property="og:description" content="Top-rated ISO 9001:2015 certified security and facility management services in Jamshedpur. 24/7 nationwide protection you can trust." />
+  <meta property="og:image" content="https://imsjsr.com/ims-logo.png" />
   
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://imsjsr.com/">
-  <meta property="twitter:title" content="IMS – Security Services">
-  <meta property="twitter:description" content="Top-rated ISO 9001:2015 certified security services in Jamshedpur.">
-  <meta property="twitter:image" content="https://imsjsr.com/ims-logo.png">
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://imsjsr.com/" />
+  <meta property="twitter:title" content="IMS – Security Services" />
+  <meta property="twitter:description" content="Top-rated ISO 9001:2015 certified security services in Jamshedpur." />
+  <meta property="twitter:image" content="https://imsjsr.com/ims-logo.png" />
 
   <!-- JSON-LD Structured Data Schema for Local SEO -->
   <script type="application/ld+json">
@@ -246,9 +249,9 @@
       });
     }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1494,24 +1497,158 @@
       }
       .modal-content-block h2 { font-size: 1.8rem; }
     }
+
+    /* ─── MOBILE HAMBURGER + SLIDE-IN NAV ─────────────────── */
+    .mob-header-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.2rem;
+      height: 58px;
+    }
+    .mob-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: .02em;
+    }
+    [data-theme="dark"] .mob-brand { color: #fff; }
+    .mob-header-bar .theme-toggle {
+      border-color: rgba(0,0,0,0.15);
+      color: var(--dark);
+    }
+    [data-theme="dark"] .mob-header-bar .theme-toggle { border-color: rgba(255,255,255,0.2); color: #fff; }
+
+    /* Hamburger icon */
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 1001;
+    }
+    .hamburger .bar {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--dark);
+      border-radius: 3px;
+      transition: transform .3s ease, opacity .25s ease;
+    }
+    [data-theme="dark"] .hamburger .bar { background: #fff; }
+    .hamburger.open .bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open .bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* Mobile nav slide panel */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      z-index: 997;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateX(100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      box-shadow: -4px 0 30px rgba(0,0,0,0.12);
+    }
+    [data-theme="dark"] .mobile-nav { background: #0f1117; }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* Mobile nav links */
+    .mnav-link {
+      display: block;
+      padding: 1.1rem 1.5rem;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s, background .2s;
+    }
+    [data-theme="dark"] .mnav-link { color: rgba(255,255,255,0.8); }
+    .mnav-link:hover { color: var(--red); }
+
+    /* Mobile sub-menu toggle button */
+    .mnav-group-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1.1rem 1.5rem;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      text-align: left;
+      transition: color .2s, background .2s;
+    }
+    [data-theme="dark"] .mnav-group-btn { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.08); }
+    .mnav-group-btn:hover { color: var(--red); }
+    .mnav-group-btn .chev {
+      width: 14px; height: 14px;
+      fill: currentColor;
+      flex-shrink: 0;
+      transition: transform .3s ease;
+    }
+    .mnav-group-btn.open .chev { transform: rotate(180deg); }
+
+    /* Accordion sub */
+    .mnav-sub {
+      max-height: 0;
+      overflow: hidden;
+      background: var(--off-white);
+      transition: max-height .35s cubic-bezier(.4,0,.2,1);
+    }
+    [data-theme="dark"] .mnav-sub { background: #181a26; }
+    .mnav-sub.open { max-height: 500px; }
+    .mnav-sub a {
+      display: block;
+      padding: .9rem 2.2rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s, padding-left .2s;
+    }
+    [data-theme="dark"] .mnav-sub a { border-color: rgba(255,255,255,0.06); }
+    .mnav-sub a:last-child { border-bottom: none; }
+    .mnav-sub a:hover { color: var(--red); padding-left: 2.8rem; }
+
+    @media (max-width: 768px) {
+      nav { display: none !important; }
+      .mob-header-bar { display: flex; }
+      .mobile-nav { display: block; }
+    }
   </style>
-<style id="antigravity-scroll-lock-style">
-  html:root body.antigravity-scroll-lock {
-    overflow: hidden !important;
-  }
-</style></head>
-<body class="" style="">
+</head>
+<body>
 
   <!-- ── NAVBAR ──────────────────────────────────────────────────── -->
   <header>
     <nav>
       <div class="nav-item">
-        <a href="#home" class="nav-link" id="nav-home">HOME</a>
+        <a href="#home" class="nav-link active" id="nav-home">HOME</a>
       </div>
       <div class="nav-item">
         <a href="#" class="nav-link" id="nav-company" onclick="return false;">
           COMPANY
-          <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"></path></svg>
+          <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
         </a>
         <div class="dropdown">
           <a href="#" class="modal-trig" data-target="modal-about">About IMS Group</a>
@@ -1523,7 +1660,7 @@
       <div class="nav-item">
         <a href="#solutions" class="nav-link" id="nav-solutions" onclick="return false;">
           SOLUTIONS
-          <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"></path></svg>
+          <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
         </a>
         <div class="dropdown">
           <a href="#" class="modal-trig" data-target="modal-security">Security Solutions</a>
@@ -1534,7 +1671,7 @@
         <a href="#contact" class="nav-link" id="nav-contact">CONTACT US</a>
       </div>
       <div class="nav-item">
-        <a href="https://wa.me/917479558421" class="nav-link" id="nav-whatsapp" target="_blank" style="color:#f0c040;">📞 WhatsApp</a>
+        <a href="https://wa.me/917479558421" class="nav-link" id="nav-whatsapp" target="_blank" style="color:#f0c040;">&#128222; WhatsApp</a>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
         <svg id="theme-icon" viewBox="0 0 24 24">
@@ -1543,6 +1680,52 @@
         </svg>
       </button>
     </nav>
+
+    <!-- ── MOBILE HEADER BAR (visible ≤768px) ──────────── -->
+    <div class="mob-header-bar">
+      <div class="mob-brand">IMS Security</div>
+      <div style="display:flex;align-items:center;gap:.7rem;">
+        <button class="theme-toggle" id="theme-toggle-mob" aria-label="Toggle Dark Mode">
+          <svg id="theme-icon-mob" viewBox="0 0 24 24" style="fill:currentColor;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── MOBILE SLIDE-IN NAV PANEL ─────────────────── -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="#home" class="mnav-link">Home</a>
+
+      <button class="mnav-group-btn" id="mob-company-btn" aria-expanded="false">
+        Company
+        <svg class="chev" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="mnav-sub" id="mob-company-sub">
+        <a href="#" class="modal-trig" data-target="modal-about">About IMS Group</a>
+        <a href="#" class="modal-trig" data-target="modal-board">Board of Directors</a>
+        <a href="#" class="modal-trig" data-target="modal-training">Training &amp; Development</a>
+        <a href="#" class="modal-trig" data-target="modal-careers" style="color:var(--gold);">Careers / Join Us</a>
+      </div>
+
+      <button class="mnav-group-btn" id="mob-solutions-btn" aria-expanded="false">
+        Solutions
+        <svg class="chev" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="mnav-sub" id="mob-solutions-sub">
+        <a href="#" class="modal-trig" data-target="modal-security">Security Solutions</a>
+        <a href="#" class="modal-trig" data-target="modal-facility">Facility Management</a>
+      </div>
+
+      <a href="#contact" class="mnav-link">Contact Us</a>
+      <a href="https://wa.me/917479558421" target="_blank" rel="noopener" class="mnav-link" style="color:var(--gold);">&#128222; WhatsApp</a>
+    </nav>
+
   </header>
 
   <!-- ── HERO ───────────────────────────────────────────────────── -->
@@ -1559,7 +1742,7 @@
       <!-- Right Column: Visual App/Card -->
       <div class="logo-card-wrapper">
         <div class="logo-card">
-          <img src="ims-logo.png" alt="IMS Security Services Jamshedpur Logo - Best Security Guards and Bouncers" title="IMS Security Services Jamshedpur" width="260" height="260" style="display:block;margin:0 auto;object-fit:contain;">
+          <img src="ims-logo.png" alt="IMS Security Services Jamshedpur Logo - Best Security Guards and Bouncers" title="IMS Security Services Jamshedpur" width="260" height="260" style="display:block;margin:0 auto;object-fit:contain;"/>
         </div>
       </div>
 
@@ -1568,16 +1751,16 @@
 
   <!-- ── ABOUT STRIP ─────────────────────────────────────────────── -->
   <section class="about-strip" id="about">
-    <div class="about-left reveal visible">
+    <div class="about-left">
       <h2>About <span>IMS</span> Security Services</h2>
       <p>Our mission is to provide an outstanding level of service, excellence, and expertise in integrated facility management and professional security guard services. We always remember that behind every transaction, there is a person or family involved.</p>
       <p style="margin-top:.6rem;">By prioritizing integrated facility management and employing professional security guards, we strive to act in the best interest of our clients at all times, upholding unquestionable ethics in all transactions.</p>
       <a href="https://imsjsr.com/about-ims-group" class="btn-learn" id="btn-learn-more" target="_blank">
         Find Out More
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"></path></svg>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
       </a>
     </div>
-    <div class="about-right reveal-left visible" style="padding:0; box-shadow:inset 20px 0 50px rgba(0,0,0,0.5);">
+    <div class="about-right" style="padding:0; box-shadow:inset 20px 0 50px rgba(0,0,0,0.5);">
       <img src="ims_security_team.png" alt="IMS Professional Security Team" style="width:100%; height:100%; object-fit:cover; display:block;">
     </div>
   </section>
@@ -1586,50 +1769,50 @@
 
   <!-- ── SERVICES ────────────────────────────────────────────────── -->
   <section class="services" id="solutions">
-    <div class="section-header reveal-right visible">
+    <div class="section-header">
       <div class="section-tag">What We Offer</div>
       <h2>Secure Your Business with <span>IMS</span></h2>
       <p>Comprehensive security services tailored for every environment and threat level.</p>
     </div>
     <div class="cards">
-      <div class="card reveal visible" id="card-armed">
+      <div class="card" id="card-armed">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4z"/></svg>
         </div>
         <h3>Armed Guards</h3>
         <p>Highly trained professionals capable of protecting your business from any threat, no matter how big or small.</p>
       </div>
-      <div class="card reveal-left visible" id="card-unarmed">
+      <div class="card" id="card-unarmed">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
         </div>
         <h3>Unarmed Guards</h3>
         <p>Friendly and approachable yet highly effective at deterring criminal activity on your business premises.</p>
       </div>
-      <div class="card reveal-right visible" id="card-event">
+      <div class="card" id="card-event">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
         </div>
         <h3>Event Security</h3>
         <p>We offer event security services to ensure that your guests are safe and your event runs smoothly.</p>
       </div>
-      <div class="card reveal visible" id="card-patrol">
+      <div class="card" id="card-patrol">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
         </div>
         <h3>Mobile Patrols</h3>
         <p>Our mobile patrols provide a highly visible presence to help deter criminal activity in your area.</p>
       </div>
-      <div class="card reveal-left visible" id="card-alarm">
+      <div class="card" id="card-alarm">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
         </div>
         <h3>Alarm Response</h3>
         <p>Our guards are trained to respond quickly and effectively to any alarm triggered on your premises.</p>
       </div>
-      <div class="card reveal-right visible" id="card-cctv">
+      <div class="card" id="card-cctv">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
         </div>
         <h3>CCTV Monitoring</h3>
         <p>We offer CCTV monitoring services to help keep your business premises secure 24/7.</p>
@@ -1640,19 +1823,19 @@
   <!-- ── STATS ───────────────────────────────────────────────────── -->
   <section class="stats">
     <div class="stats-inner">
-      <div class="stat-item reveal visible" id="stat-exp">
+      <div class="stat-item" id="stat-exp">
         <div class="stat-num">11+</div>
         <div class="stat-label">Years Experience</div>
       </div>
-      <div class="stat-item reveal-left visible" id="stat-clients">
+      <div class="stat-item" id="stat-clients">
         <div class="stat-num">100+</div>
         <div class="stat-label">Clients Served</div>
       </div>
-      <div class="stat-item reveal-right visible" id="stat-guards">
-        <div class="stat-num">1,200+</div>
+      <div class="stat-item" id="stat-guards">
+        <div class="stat-num">1200+</div>
         <div class="stat-label">Security Personnel</div>
       </div>
-      <div class="stat-item reveal visible" id="stat-cities">
+      <div class="stat-item" id="stat-cities">
         <div class="stat-num">17+</div>
         <div class="stat-label">Cities Covered</div>
       </div>
@@ -1661,36 +1844,36 @@
 
   <!-- ── WHY IMS ─────────────────────────────────────────────────── -->
   <section class="why-us" id="why">
-    <div class="section-header reveal-left visible">
+    <div class="section-header">
       <div class="section-tag">Why Choose Us</div>
       <h2>The <span>IMS</span> Advantage</h2>
       <p>Decades of expertise backed by world-class processes and ISO-certified quality standards.</p>
     </div>
     <div class="why-grid">
-      <div class="why-item reveal-right visible">
+      <div class="why-item">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4z"/></svg>
         </div>
         <h4>ISO 9001:2015 Certified</h4>
         <p>Internationally recognized quality management systems ensuring consistent, high-standard service delivery.</p>
       </div>
-      <div class="why-item reveal visible">
+      <div class="why-item">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
         </div>
         <h4>24/7 Operations</h4>
         <p>Round-the-clock monitoring and rapid incident response, 365 days a year without interruption.</p>
       </div>
-      <div class="why-item reveal-left visible">
+      <div class="why-item">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
         </div>
         <h4>Trained Professionals</h4>
         <p>All personnel undergo rigorous background checks, physical training, and ongoing skill development.</p>
       </div>
-      <div class="why-item reveal-right visible">
+      <div class="why-item">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
         </div>
         <h4>Nationwide Coverage</h4>
         <p>Operational in 17+ cities across India, providing seamless multi-location security solutions.</p>
@@ -1700,28 +1883,28 @@
 
   <!-- ── CONTACT + FAQ ────────────────────────────────────────────── -->
   <section class="why-us" id="contact" style="background:var(--off-white);">
-    <div class="section-header reveal visible">
+    <div class="section-header">
       <div class="section-tag">Get In Touch</div>
       <h2>Contact <span>Us</span></h2>
       <p>Better yet, see us in person! We value our customers, so feel free to visit during normal business hours.</p>
     </div>
     <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
-      <div class="why-item reveal-left visible" style="flex-direction:column;">
-        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="white"></path></svg></div>
+      <div class="why-item" style="flex-direction:column;">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="white"/></svg></div>
         <h4>Our Address</h4>
         <p>Zon 1b House No. 15A Road, Saraswati Niwas, Birsanagar, Near Goldy Store, Chinmaya Vidyalaya Telco Dhobi Mord,<br><strong>Jamshedpur, JH 831019</strong></p>
       </div>
-      <div class="why-item reveal-right visible" style="flex-direction:column;">
-        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="white"></path></svg></div>
+      <div class="why-item" style="flex-direction:column;">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="white"/></svg></div>
         <h4>Phone &amp; Email</h4>
         <p>
           <a href="tel:+917479558421" style="color:var(--red);font-weight:600;text-decoration:none;">+91 7479558421</a><br>
           <a href="mailto:dineshdubey@imsjsr.com" style="color:var(--red);font-weight:600;text-decoration:none;">dineshdubey@imsjsr.com</a><br><br>
-          <a href="https://wa.me/917479558421" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;background:#25D366;color:#fff;padding:.5rem 1rem;border-radius:50px;font-size:.8rem;font-weight:700;text-decoration:none;">📞 Message on WhatsApp</a>
+          <a href="https://wa.me/917479558421" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;background:#25D366;color:#fff;padding:.5rem 1rem;border-radius:50px;font-size:.8rem;font-weight:700;text-decoration:none;">&#128222; Message on WhatsApp</a>
         </p>
       </div>
-      <div class="why-item reveal visible" style="flex-direction:column;">
-        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" fill="white"></path></svg></div>
+      <div class="why-item" style="flex-direction:column;">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" fill="white"/></svg></div>
         <h4>Business Hours</h4>
         <p>Open Today<br><strong>09:00 AM – 05:00 PM</strong><br><br>For emergencies &amp; after-hours security, call us — our guards operate <strong>24/7</strong>.</p>
       </div>
@@ -1730,37 +1913,37 @@
 
   <!-- ── CONTACT FORM ──────────────────────────────────────────────── -->
   <section class="contact-form-section" id="quote">
-    <div class="section-header reveal-left visible" style="position:relative;z-index:1;">
+    <div class="section-header" style="position:relative;z-index:1;">
       <div class="section-tag">Send a Message</div>
       <h2>Request a <span style="color:var(--gold);">Free Quote</span></h2>
       <p style="color:rgba(255,255,255,0.55);">Fill in the form and we'll get back to you within 24 hours.</p>
     </div>
     <div class="cf-wrap reveal">
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-        <input type="hidden" name="subject" value="New Quote Request – IMS Security">
-        <input type="hidden" name="from_name" value="IMS Website">
-        <input type="hidden" name="redirect" value="false">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+        <input type="hidden" name="subject" value="New Quote Request – IMS Security" />
+        <input type="hidden" name="from_name" value="IMS Website" />
+        <input type="hidden" name="redirect" value="false" />
         <div class="cf-row">
           <div class="cf-row-field">
             <label for="cf-name">Full Name *</label>
-            <input type="text" id="cf-name" name="name" placeholder="Your name" required="">
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
           </div>
           <div class="cf-row-field">
             <label for="cf-phone">Phone Number *</label>
-            <input type="tel" id="cf-phone" name="phone" placeholder="+91 XXXXX XXXXX" required="">
+            <input type="tel" id="cf-phone" name="phone" placeholder="+91 XXXXX XXXXX" required />
           </div>
         </div>
         <div class="cf-field">
           <label for="cf-email">Email Address</label>
-          <input type="email" id="cf-email" name="email" placeholder="your@email.com">
+          <input type="email" id="cf-email" name="email" placeholder="your@email.com" />
         </div>
         <div class="cf-field">
           <label for="cf-msg">Your Message *</label>
-          <textarea id="cf-msg" name="message" placeholder="Tell us about your security requirements — location, type of service, number of guards needed, etc." required=""></textarea>
+          <textarea id="cf-msg" name="message" placeholder="Tell us about your security requirements — location, type of service, number of guards needed, etc." required></textarea>
         </div>
         <button type="submit" class="btn-submit" id="cf-submit">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           Send Message
         </button>
         <div class="cf-toast" id="cf-toast"></div>
@@ -1770,7 +1953,7 @@
 
   <!-- ── FAQ ──────────────────────────────────────────────────────── -->
   <section style="padding:4rem 1rem;background:#fff;" id="faq">
-    <div class="section-header reveal reveal-right visible">
+    <div class="section-header reveal">
       <div class="section-tag">FAQ</div>
       <h2>Frequently Asked <span>Questions</span></h2>
       <p>Can't find an answer? Reach us at <a href="mailto:dineshdubey@imsjsr.com" style="color:var(--red);">dineshdubey@imsjsr.com</a></p>
@@ -1828,7 +2011,7 @@
     <div class="footer-meta">
       <span>ISO 9001:2015 Certified</span> &nbsp;|&nbsp; Zon 1b House No. 15A, Birsanagar, Jamshedpur JH 831019<br>
       <a href="mailto:dineshdubey@imsjsr.com" style="color:var(--gold);text-decoration:none;">dineshdubey@imsjsr.com</a> &nbsp;|&nbsp; <a href="tel:+917479558421" style="color:var(--gold);text-decoration:none;">+91 7479558421</a><br><br>
-      Copyright © 2015 IMS Security – All Rights Reserved.<br><br>
+      Copyright &copy; 2015 IMS Security – All Rights Reserved.<br><br>
       <a href="/privacy.html" style="color:rgba(255,255,255,0.3);text-decoration:none;font-size:.72rem;margin:0 .5rem;transition:color .2s;" onmouseover="this.style.color='#f0c040'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Privacy Policy</a>
       &nbsp;|&nbsp;
       <a href="/terms.html" style="color:rgba(255,255,255,0.3);text-decoration:none;font-size:.72rem;margin:0 .5rem;transition:color .2s;" onmouseover="this.style.color='#f0c040'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Terms of Service</a>
@@ -1847,7 +2030,7 @@
   <!-- ── WHATSAPP FLOAT ─────────────────────────────────────────── -->
   <a class="wa-float" id="wa-float" href="https://wa.me/917479558421" target="_blank" rel="noopener" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 2.933C8.768 2.933 2.933 8.768 2.933 16c0 2.31.627 4.474 1.718 6.338L2.4 29.067l6.905-1.811A13.02 13.02 0 0 0 16 29.067c7.232 0 13.067-5.835 13.067-13.067S23.232 2.933 16 2.933zm0 23.467a10.38 10.38 0 0 1-5.29-1.45l-.378-.225-3.928 1.03 1.047-3.823-.247-.393A10.356 10.356 0 0 1 5.6 16c0-5.73 4.67-10.4 10.4-10.4S26.4 10.27 26.4 16 21.73 26.4 16 26.4zm5.707-7.793c-.312-.156-1.85-.912-2.136-1.016-.287-.104-.496-.156-.705.156-.208.313-.808 1.016-.99 1.224-.183.208-.365.234-.677.078-.312-.156-1.318-.486-2.51-1.55-.928-.828-1.554-1.85-1.737-2.163-.182-.312-.02-.48.137-.636.14-.14.312-.365.468-.547.156-.183.208-.313.312-.521.104-.208.052-.39-.026-.547-.078-.156-.705-1.694-.966-2.32-.255-.607-.514-.524-.705-.534l-.6-.01c-.208 0-.547.078-.834.39-.286.313-1.094 1.068-1.094 2.606 0 1.538 1.12 3.023 1.276 3.23.156.208 2.204 3.365 5.337 4.718.746.322 1.328.515 1.781.66.748.238 1.43.204 1.968.124.6-.09 1.85-.756 2.11-1.488.26-.73.26-1.355.182-1.487-.077-.13-.286-.208-.6-.365z"></path>
+      <path d="M16 2.933C8.768 2.933 2.933 8.768 2.933 16c0 2.31.627 4.474 1.718 6.338L2.4 29.067l6.905-1.811A13.02 13.02 0 0 0 16 29.067c7.232 0 13.067-5.835 13.067-13.067S23.232 2.933 16 2.933zm0 23.467a10.38 10.38 0 0 1-5.29-1.45l-.378-.225-3.928 1.03 1.047-3.823-.247-.393A10.356 10.356 0 0 1 5.6 16c0-5.73 4.67-10.4 10.4-10.4S26.4 10.27 26.4 16 21.73 26.4 16 26.4zm5.707-7.793c-.312-.156-1.85-.912-2.136-1.016-.287-.104-.496-.156-.705.156-.208.313-.808 1.016-.99 1.224-.183.208-.365.234-.677.078-.312-.156-1.318-.486-2.51-1.55-.928-.828-1.554-1.85-1.737-2.163-.182-.312-.02-.48.137-.636.14-.14.312-.365.468-.547.156-.183.208-.313.312-.521.104-.208.052-.39-.026-.547-.078-.156-.705-1.694-.966-2.32-.255-.607-.514-.524-.705-.534l-.6-.01c-.208 0-.547.078-.834.39-.286.313-1.094 1.068-1.094 2.606 0 1.538 1.12 3.023 1.276 3.23.156.208 2.204 3.365 5.337 4.718.746.322 1.328.515 1.781.66.748.238 1.43.204 1.968.124.6-.09 1.85-.756 2.11-1.488.26-.73.26-1.355.182-1.487-.077-.13-.286-.208-.6-.365z"/>
     </svg>
   </a>
 
@@ -1855,7 +2038,7 @@
   <div class="content-modal" id="ims-modal">
     <div class="modal-overlay"></div>
     <div class="modal-container">
-      <button class="modal-close" aria-label="Close Modal">×</button>
+      <button class="modal-close" aria-label="Close Modal">&times;</button>
       
       <!-- Training Data -->
       <div class="modal-content-block" id="modal-training">
@@ -1890,7 +2073,7 @@
           </div>
           <div style="flex:1;min-width:250px;background:rgba(255,255,255,0.05);border:1px solid rgba(240,192,64,0.15);padding:1.5rem;border-radius:12px;">
             <h3 style="margin-bottom:0.2rem;color:var(--red);">Executive Team</h3>
-            <div style="font-size:0.8rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">Operations &amp; Strategy</div>
+            <div style="font-size:0.8rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">Operations & Strategy</div>
             <p style="font-size:0.9rem;">Our operations command comprises ex-defence officers and seasoned facility management experts ensuring perfectly orchestrated 24/7 security deployments.</p>
           </div>
         </div>
@@ -1963,17 +2146,17 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
             <div class="cf-field">
               <label style="display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:.5rem;">Full Name *</label>
-              <input type="text" name="appName" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;" required="">
+              <input type="text" name="appName" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;" required>
             </div>
             <div class="cf-field">
               <label style="display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:.5rem;">Phone Number *</label>
-              <input type="tel" name="appPhone" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;" required="">
+              <input type="tel" name="appPhone" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;" required>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
             <div class="cf-field">
               <label style="display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:.5rem;">Role Applying For *</label>
-              <select name="appRole" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;appearance:none;" required="">
+              <select name="appRole" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;appearance:none;" required>
                 <option value="Security Guard (Unarmed)" style="color:#000;">Security Guard (Unarmed)</option>
                 <option value="Security Guard (Armed)" style="color:#000;">Security Guard (Armed)</option>
                 <option value="Bouncer / Event Security" style="color:#000;">Bouncer / Event Security</option>
@@ -1983,7 +2166,7 @@
             </div>
             <div class="cf-field">
               <label style="display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:.5rem;">Years of Experience *</label>
-              <input type="text" name="appExp" placeholder="e.g. 2 years, Fresher" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;" required="">
+              <input type="text" name="appExp" placeholder="e.g. 2 years, Fresher" style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;" required>
             </div>
           </div>
           <button type="submit" id="careers-submit" class="btn-submit" style="width:100%;padding:1.1rem;background:linear-gradient(135deg, var(--red), var(--red-dark));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:.9rem;cursor:pointer;">Submit Application</button>
@@ -2251,7 +2434,88 @@
       if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
     });
 
+    /* ── Mobile Hamburger Nav ─────────────────────────── */
+    const hamBtn    = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    function closeMobileNav() {
+      if (!hamBtn || !mobileNav) return;
+      hamBtn.classList.remove('open');
+      mobileNav.classList.remove('open');
+      hamBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (hamBtn && mobileNav) {
+      hamBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.contains('open');
+        if (isOpen) {
+          closeMobileNav();
+        } else {
+          hamBtn.classList.add('open');
+          mobileNav.classList.add('open');
+          hamBtn.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    }
+
+    // Mobile accordion sub-menus
+    ['company', 'solutions'].forEach(key => {
+      const btn = document.getElementById('mob-' + key + '-btn');
+      const sub = document.getElementById('mob-' + key + '-sub');
+      if (!btn || !sub) return;
+      btn.addEventListener('click', () => {
+        const isOpen = btn.classList.contains('open');
+        // Close all first
+        document.querySelectorAll('.mnav-group-btn').forEach(b => {
+          b.classList.remove('open');
+          b.setAttribute('aria-expanded', 'false');
+        });
+        document.querySelectorAll('.mnav-sub').forEach(s => s.classList.remove('open'));
+        // Toggle this one
+        if (!isOpen) {
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          sub.classList.add('open');
+        }
+      });
+    });
+
+    // Close mobile nav when any link inside is tapped
+    if (mobileNav) {
+      mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          closeMobileNav();
+          document.querySelectorAll('.mnav-group-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.mnav-sub').forEach(s => s.classList.remove('open'));
+        });
+      });
+    }
+
+    // Mobile theme toggle (mirrors desktop toggle)
+    const themeToggleMob = document.getElementById('theme-toggle-mob');
+    const themeIconMob   = document.getElementById('theme-icon-mob');
+    if (themeToggleMob) {
+      themeToggleMob.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+          updateIcon(false);
+          if (themeIconMob) { themeIconMob.innerHTML = `<path d="${moonPath}"></path>`; themeIconMob.style.fill = 'currentColor'; }
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          updateIcon(true);
+          if (themeIconMob) { themeIconMob.innerHTML = `<path d="${sunPath}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>`; themeIconMob.style.fill = 'none'; }
+        }
+      });
+    }
+
+    // Close mobile nav on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMobileNav();
+    });
+
   </script>
-
-
-<div id="preact-border-shadow-host" popover="manual" style="border: none; padding: 0px; margin: 0px; inset: 0px; position: fixed; width: 100vw; height: 100vh; background: transparent; pointer-events: none;"></div></body></html>
+</body>
+</html>
