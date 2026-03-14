@@ -294,98 +294,104 @@
 
     [data-theme="dark"] {
       /* Core palette flip */
-      --dark: #e8eaf6;
-      /* text becomes pale lavender-white */
+      --dark: #f8f9ff;
       --dark2: #c5cae9;
       --dark3: #9fa8da;
-      --white: #0f1117;
-      /* page background: very dark near-black */
-      --off-white: #181a26;
-      /* card/section alternate: slightly lighter navy */
+      --white: #0a0b10;
+      --off-white: #12131f;
       --text-muted: #8892b0;
-      /* muted text: readable slate-blue */
       --border: rgba(255, 255, 255, 0.08);
+      --bg-glass: rgba(255, 255, 255, 0.03);
+      --bg-glass-hover: rgba(255, 255, 255, 0.06);
     }
 
-    /* Ã¢â€â‚¬Ã¢â€â‚¬ Section-specific dark overrides Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+    /* ──── Section-specific dark overrides ───────────────────────────────────────── */
     [data-theme="dark"] body {
-      background: #0f1117;
+      background: var(--white);
     }
 
-    /* Hero: swap white gradient to dark */
     [data-theme="dark"] .hero::before {
-      background: linear-gradient(135deg, #0f1117 0%, #181a26 50%, #1a1030 100%);
+      background: linear-gradient(135deg, #0a0b10 0%, #12131f 50%, #1a1030 100%);
     }
 
-    /* About-right panel: was pink/rose, now dark */
     [data-theme="dark"] .about-right {
-      background: linear-gradient(135deg, #1a1030 0%, #0f1117 100%);
+      background: linear-gradient(135deg, #1a1030 0%, #0a0b10 100%);
     }
 
-    /* Services section */
     [data-theme="dark"] .services {
-      background: #0f1117;
+      background: var(--white);
     }
 
-    /* Cards: elegant darker surface */
     [data-theme="dark"] .card {
-      background: #181a26;
+      background: var(--bg-glass);
       border-color: rgba(232, 25, 44, 0.15);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
     }
 
-    /* Card icons: adjust bg tint */
+    [data-theme="dark"] .card:hover {
+      background: var(--bg-glass-hover);
+      box-shadow: 0 16px 48px rgba(232, 25, 44, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
     [data-theme="dark"] .card-icon {
-      background: linear-gradient(135deg, rgba(232, 25, 44, 0.15), rgba(232, 25, 44, 0.08));
+      background: linear-gradient(135deg, rgba(232, 25, 44, 0.2), rgba(232, 25, 44, 0.1));
     }
 
-    /* Why us items */
     [data-theme="dark"] .why-us {
-      background: #0f1117;
+      background: var(--white);
     }
 
     [data-theme="dark"] .why-item {
-      background: #181a26;
+      background: var(--bg-glass);
       border-color: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    [data-theme="dark"] .why-item h4 {
+      color: var(--dark);
     }
 
     [data-theme="dark"] .why-item:hover {
-      background: #1e2133;
+      background: var(--bg-glass-hover);
+      border-color: rgba(232, 25, 44, 0.2);
+      box-shadow: 0 12px 36px rgba(232, 25, 44, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
-    /* FAQ */
     [data-theme="dark"] .faq-item {
-      background: #181a26;
+      background: var(--bg-glass);
       border-color: rgba(255, 255, 255, 0.07);
     }
 
     [data-theme="dark"] .faq-item.open {
-      background: linear-gradient(135deg, rgba(232, 25, 44, 0.06), rgba(240, 192, 64, 0.04));
+      background: linear-gradient(135deg, rgba(232, 25, 44, 0.08), rgba(240, 192, 64, 0.05));
+      border-color: rgba(232, 25, 44, 0.25);
     }
 
-    /* Logo card */
+    [data-theme="dark"] .faq-question {
+      color: var(--dark);
+    }
+
     [data-theme="dark"] .logo-card {
-      background: #181a26;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      background: rgba(10, 11, 16, 0.65);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    
+    [data-theme="dark"] .logo-card p {
+      color: rgba(255,255,255,0.8);
     }
 
-    /* Divider shimmer: adjust */
     [data-theme="dark"] .divider {
       background: linear-gradient(90deg, transparent, rgba(232, 25, 44, 0.3) 35%, var(--red) 50%, rgba(232, 25, 44, 0.3) 65%, transparent);
     }
 
-    /* Trusted badge stays dark already */
-
-    /* nav dropdown dark */
     [data-theme="dark"] .dropdown {
       background: linear-gradient(160deg, #111226, #1a1b2e);
     }
 
-    /* dark mode: restore dark navbar */
     [data-theme="dark"] header {
-      background: rgba(13, 14, 31, 0.97);
-      border-bottom: 1px solid rgba(232, 25, 44, 0.2);
-      box-shadow: 0 2px 32px rgba(0, 0, 0, 0.5);
+      background: rgba(13, 14, 31, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
     [data-theme="dark"] .nav-link {
@@ -397,6 +403,33 @@
       color: #f0c040;
     }
 
+    [data-theme="dark"] .section-header h2 {
+      color: var(--dark);
+    }
+
+    [data-theme="dark"] .section-header p {
+      color: var(--text-muted);
+    }
+
+    [data-theme="dark"] .cf-wrap {
+      background: rgba(10, 11, 16, 0.5);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    [data-theme="dark"] .cf-input {
+      background: rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+    
+    [data-theme="dark"] .cf-input:focus {
+      border-color: var(--red);
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    [data-theme="dark"] .cf-field label {
+      color: rgba(255,255,255,0.7);
+    }
 
     html {
       scroll-behavior: smooth;
